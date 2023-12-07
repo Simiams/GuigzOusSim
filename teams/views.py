@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .api import get_pokemon_by_id
 from .models import Pokemon, PokemonTeam
 from .serializers import PokemonSerializer
 
@@ -21,5 +22,10 @@ def create_pokemon(request):
 
 def see_homepage(request):
     pokemon_teams = PokemonTeam.objects.all()
-    pokemons_by_team = [{"team": t, "pokemons": t.members.all()} for t in pokemon_teams]
-    return render(request, 'homepage.html', {"pokemon_teams": pokemons_by_team})
+    for t in pokemon_teams:
+        for p in t.members.all():
+            print(p.id)
+
+    pokemons_by_team = [{"team": t, "pokemons": get_pokemon_by_id(t.members.all())} for t in pokemon_teams]
+    pokemons_by_team_api = [ for p in pokemons_by_team]
+    return render(request, 'homepage.html', {"pokemon_teams": "pokemons_by_team"})
