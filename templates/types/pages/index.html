@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+{% for pokedex in pokedexes %}
+	{{ pokedex.id }}
+	{{ pokedex.name }}
+    <br>
+{% endfor %}
+
+{% endblock %}
