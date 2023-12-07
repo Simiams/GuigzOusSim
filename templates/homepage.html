@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0F0F0;
+        }
+
+        .pokedex {
+            width: 600px;
+            margin: 50px auto;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .pokedex img {
+            width: 100%;
+            height: auto;
+        }
+
+        .pokedex .details {
+            margin-top: 20px;
+        }
+
+        .pokedex .details h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .pokedex .details p {
+            margin: 10px 0;
+        }
+
+        .pokedex .types {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pokedex .type {
+            background-color: #E0E0E0;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 16px;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <div class="pokedex">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+        <div class="details">
+            <h2>Pikachu</h2>
+            <p>Height: 4' 03"</p>
+            <p>Weight: 60.0 lbs</p>
+            <div class="types">
+                <div class="type">electric</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
