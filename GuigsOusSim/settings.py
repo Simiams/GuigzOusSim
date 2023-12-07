@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pokedex.apps.PokedexConfig',
+    'teams.apps.TeamsConfig',
 ]
 
 MIDDLEWARE = [
