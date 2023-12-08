@@ -54,17 +54,17 @@
 </head>
 <body>
 
-{{ pokemon_by_team }}
-    <div class="pokedex">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
-        <div class="details">
-            <h2>Pikachu</h2>
-            <p>Height: 4' 03"</p>
-            <p>Weight: 60.0 lbs</p>
-            <div class="types">
-                <div class="type">electric</div>
+<div class="pokedex">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+    <div class="details">
+        <h2>Pikachu</h2>
+        <p>Height: 4' 03"</p>
+        <p>Weight: 60.0 lbs</p>
+        <div class="types">
+            <div class="type">{{ pokemon_teams }}</div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
