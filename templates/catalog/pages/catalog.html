@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    {% for pokemon in pokemons %}
+        <p>{{ forloop.counter }}. {{ pokemon.name }}</p>
+    {% endfor %}
+
+    {% if page_info.display_button %}
+        <a href="{% url 'see_all_pokemon_by_catalog' catalog=page_info.catalog_name id=page_info.id %}?start={{ page_info.last_pokemon_index }}">Aller vers l'URL
+            avec
+            paramètre</a>
+    {% endif %}
+
+{% endblock %}

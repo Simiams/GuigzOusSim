@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .api import get_pokemon_by_id
-from .dtos import PokemonDTO
+from dto.dtos import PokemonDTO
 from .models import PokemonTeam
 from .serializers import PokemonSerializer
 
