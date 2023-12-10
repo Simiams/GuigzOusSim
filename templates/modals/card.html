@@ -1,0 +1,26 @@
+<div id="popup">
+    <img class="popup-img" alt="Image" class="img-fluid">
+    <span class="popup-close"></span>
+    <p id="popup-text">Default Text</p>
+    <form id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">
+    </form>
+</div>
+
+<style>
+    #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .popup-close {
+        cursor: pointer;
+    }
+</style>

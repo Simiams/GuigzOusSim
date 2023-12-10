@@ -13,6 +13,7 @@ class PokemonDTO:
         return f"{self.name} - {self.type} - {self.weight} - {self.height} - {self.stats} - {self.abilities}"
 
     def __init__(self, p):
+        self.id = p["id"]
         self.name = p["name"]
         self.sprite_front = p["sprites"]["front_default"]
         self.sprite_back = p["sprites"]["back_default"]
