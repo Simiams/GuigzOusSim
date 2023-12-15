@@ -33,7 +33,6 @@ Ce package regroupe les fonctionnalité de recherche par catégorie de pokeon (t
 - https://pokeapi.co/api/v2/pokemon-habitat/
 - https://pokeapi.co/api/v2/growth-rate/
 
-
 Il retourne une liste de pokemon avec leurs nom et url.
 
 Pour chaque urls, on vies récupérer toutes les informations sur le pokemon. Pour des soucis de performance, on execute

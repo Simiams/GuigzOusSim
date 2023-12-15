@@ -60,7 +60,7 @@ def add_pokemon_to_team(request):
 
 
 @api_view(['POST'])
-def add_team(request):
+def     add_team(request):
     if request.method == 'POST':
         try:
             team_name = request.data.get('team_name')
