@@ -2,24 +2,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" href="{% static 'R.png' %}" type="image/x-icon">
-    <title>{% block page_title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block page_title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
+    <div class="base-card"></div>
+    <div class="rotated-card"></div>
+    <div class="bottom-card"></div>
+    <div class="side-card"></div>
 
-{% block body %}
-{% endblock %}
-
-{% include "modals/card.html" %}
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script type="text/javascript" src="{% static 'js/api.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
