@@ -1,5 +1,10 @@
 # SETUP
-pip install -r requirements.txt (installe les dépendances necessaires)
+### VENV
+- python3 -m venv venv (créer un environnement virtuel)
+- source venv/bin/activate (active l'environnement virtuel)
+### REQUIREMENTS
+- pip freeze > requirements.txt (créer un fichier requirements.txt)
+- pip install -r requirements.txt (installe les dépendances necessaires)
 
 # BDD
 ```
@@ -7,7 +12,12 @@ Username: guigsoussim
 password: guigsoussim
 ```
 Pour des soucis de simplicsité, on stocke en base uniquement le information suivante:
-
+### Pokemon
+- id
+- id (coté PokeApi)
+### Teams
+- id
+- name
 
 
 # BACKEND
