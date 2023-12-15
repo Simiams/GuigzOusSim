@@ -22,9 +22,7 @@ Pour des soucis de simplicsité, on stocke en base uniquement le information sui
 ---
 # BACKEND
 ## catalog
-
 Ce package regroupe les fonctionnalité de recherche par catégorie de pokeon (type, pokedex, type d'oeuf, genre, etc...)
-
 ### EndPoints
 
 - https://pokeapi.co/api/v2/pokemon/
