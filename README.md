@@ -6,7 +6,7 @@ pip install -r requirements.txt (installe les dépendances necessaires)
 Username: guigsoussim
 password: guigsoussim
 ```
-Pour des soucis de simplicité, on stocke en base uniquement le information suivante:
+Pour des soucis de simplicsité, on stocke en base uniquement le information suivante:
 
 
 
