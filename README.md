@@ -6,11 +6,11 @@
 - pip freeze > requirements.txt (créer un fichier requirements.txt)
 - pip install -r requirements.txt (installe les dépendances necessaires)
 
+---
 # BDD
-```
-Username: guigsoussim
-password: guigsoussim
-```
+- Username: guigsoussim
+- password: guigsoussim
+
 Pour des soucis de simplicsité, on stocke en base uniquement le information suivante:
 ### Pokemon
 - id
@@ -19,7 +19,7 @@ Pour des soucis de simplicsité, on stocke en base uniquement le information sui
 - id
 - name
 
-
+---
 # BACKEND
 ## catalog
 
