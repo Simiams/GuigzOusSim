@@ -7,7 +7,8 @@
     {% for pokemon in pokemons %}
         <p>{{ forloop.counter }}. {{ pokemon.name }}</p>
         <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid pokemon_img" data-team-ids="{{ teams }}"
-             data-pokemon-name="{{ pokemon.name }}" data-pokemon-id="{{ pokemon.id }}">
+             data-pokemon-name="{{ pokemon.name }}" data-pokemon-id="{{ pokemon.id }}"
+             data-full-pokemon="{{ pokemon }}">
     {% endfor %}
 
 

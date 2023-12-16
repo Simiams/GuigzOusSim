@@ -1,17 +1,7 @@
+import json
+
+
 class PokemonDTO:
-    # def __init__(self, name, sprite_front, sprite_back, type, weight, height, stats, abilities):
-    #     self.name = name
-    #     self.sprite_front = sprite_front
-    #     self.sprite_back = sprite_back
-    #     self.type = type
-    #     self.weight = weight
-    #     self.height = height
-    #     self.stats = stats
-    #     self.abilities = abilities
-
-    def __str__(self):
-        return f"{self.name} - {self.type} - {self.weight} - {self.height} - {self.stats} - {self.abilities}"
-
     def __init__(self, p):
         self.id = p["id"]
         self.name = p["name"]
@@ -23,32 +13,43 @@ class PokemonDTO:
         self.stats = [StatDTO(s) for s in p['stats']]
         self.abilities = [AbilityDTO(a) for a in p['abilities']]
 
+    def __str__(self):
+        return json.dumps({
+            "id": self.id,
+            "name": self.name,
+            "sprite_front": self.sprite_front,
+            "sprite_back": self.sprite_back,
+            "type": self.type,
+            "weight": self.weight,
+            "height": self.height,
+            "stats": [s.to_json() for s in self.stats],
+            "abilities": [a.to_json() for a in self.abilities]
+        })
+
 
 class StatDTO:
-    # def __init__(self, effort, base_stat, name, url):
-    #     self.effort = effort
-    #     self.base_stat = base_stat
-    #     self.name = name
-    #     self.url = url
-
-    def __str__(self):
-        return f"{self.name} - {self.effort} - {self.base_stat}"
-
     def __init__(self, s):
         self.effort = s["effort"]
         self.base_stat = s["base_stat"]
         self.name = s["stat"]["name"]
         self.url = s["stat"]["url"]
 
+    def to_json(self):
+        return {
+            "effort": self.effort,
+            "base_stat": self.base_stat,
+            "name": self.name,
+            "url": self.url
+        }
+
 
 class AbilityDTO:
-    # def __init__(self, name, url):
-    #     self.name = name
-    #     self.url = url
-
-    def __str__(self):
-        return f"{self.name}"
-
     def __init__(self, a):
         self.name = a["ability"]["name"]
         self.url = a["ability"]["url"]
+
+    def to_json(self):
+        return {
+            "name": self.name,
+            "url": self.url
+        }
