@@ -6,6 +6,7 @@ from django.shortcuts import render
 from catalog.api import get_all_catalog, get_pokemons_by_catalog_id
 from catalog.utils import get_url_by_catalog_name
 from teams.models import PokemonTeam
+from catalog.utils import POKEMON_TYPE_ICONS
 
 
 # Create your views here.
@@ -13,6 +14,8 @@ def see_all_catalog(request, catalog):
     url = get_url_by_catalog_name(catalog)
     if not url: return not_found(request)
     res = get_all_catalog(url)
+    for r in res:
+        r['icon'] = POKEMON_TYPE_ICONS[r['name']]
     return render(request, 'catalog/pages/index.html', {"catalog_name": catalog, "catalog": res})
 
 
@@ -32,7 +35,6 @@ async def see_all_pokemons_by_catalog(request, catalog, id):
                                                           "page_info": {"display_button": display_button,
                                                                         "catalog_name": catalog, "id": id,
                                                                         "max_pokemon": len(pokemons) + 25}})
-
 
 def not_found(request):
     return render(request, 'base.html')
