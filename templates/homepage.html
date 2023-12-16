@@ -1,4 +1,83 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock %}
 
 {% block body %}
+    <div class="main">
+    {% for team in pokemon_by_team %}
+
+    {% endfor %}
+
+
+        <div class="left">
+            <div class="p1">
+                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 300px 0 0 50px">
+            </div>
+            <div class="p2">
+                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 50px 0 0 200px">
+            </div>
+            <div class="p3">
+                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 50px 0 0 500px">
+            </div>
+            <div class="p4">
+                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 300px 0 0 650px">
+            </div>
+            <div class="p5">
+                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 550px 0 0 200px">
+            </div>
+            <div class="p6">
+                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 550px 0 0 500px">
+            </div>
+        </div>
+
+
+        <div class="right">
+            <div class="right-top">
+                <div class="buttons">
+                    <div class="btn-catalog">
+                        <a href="#">
+                            Type
+                        </a>
+                    </div>
+                    <div class="btn-catalog">
+                        <a href="#">
+                            Egg group
+                        </a>
+                    </div>
+                    <div class="btn-catalog">
+                        <a href="#">
+                            Gender
+                        </a>
+                    </div>
+                    <div class="btn-catalog">
+                        <a href="#">
+                            Habitat
+                        </a>
+                    </div>
+                    <div class="btn-catalog">
+                        <a href="#">
+                            Growth Rate
+                        </a>
+                    </div>
+                    <div class="btn-catalog">
+                        <a href="#">
+                            Create new Team
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom">
+                <button class="arrow arrow-left"><=</button>
+                <button class="arrow arrow-right">=></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}>
+
+
+{% block script %}
+    <script src="{% static 'js/homepage.js' %}"></script>
 {% endblock %}
