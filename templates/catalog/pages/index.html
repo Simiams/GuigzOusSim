@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
+<div class="card-container">
 {% for c in catalog %}
-	{{ c.id }}
-	{{ c.name }}
-    <br>
+    <div class="card" style="background-color: rgba(246,240,240,0.53);">
+        <a href="{% url 'see_all_pokemon_by_catalog' catalog="type" id=c.name %}">
+            <img src="{% static c.icon %}" alt="{{ "icon" }}">
+            {{ c.name }}
+        </a>
+    </div>
 {% endfor %}
-
+</div>
 {% endblock %}
