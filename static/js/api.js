@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var popup = document.querySelector('#popup');
     var closeBtn = document.querySelector('.popup-close');
-    var popupText = popup.querySelector('#popup-text');
     var container_team = popup.querySelector('#container_team');
 
     closeBtn.addEventListener('click', function () {
@@ -20,14 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
             var pokemon_name = trigger.getAttribute('data-pokemon-name');
             var pokemon_id = trigger.getAttribute('data-pokemon-id');
             var teams_id = trigger.getAttribute('data-team-ids');
+            var pokemon = trigger.getAttribute('data-full-pokemon');
+            console.log("pokemon")
+            console.log(pokemon)
+            console.log("pokemon")
+
 
             popup.style.display = 'block';
-            popupText.textContent = pokemon_name;
             popup.querySelector('.popup-img').setAttribute('src', url_img);
 
             var button_teams = JSON.parse(teams_id).map(function (team_id) {
                 return `
-                    <button type="button" name="team_id" class="team-button" data-team-id="${team_id}">Add to Team ${team_id}</button>
+                    <button type="button" name="team_id" class="team-button btn btn-primary " data-team-id="${team_id}">Add to Team ${team_id}</button>
                 `;
             });
             container_team.innerHTML = button_teams;

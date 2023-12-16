@@ -1,26 +1,16 @@
-<div id="popup">
-    <img class="popup-img" alt="Image" class="img-fluid">
-    <span class="popup-close"></span>
-    <p id="popup-text">Default Text</p>
-    <form id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">
-    </form>
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/modals/card.css' %}">
+{% endblock %}
+<div id="popup" class="card" style="width: 18rem;">
+    <span class="popup-close btn-close"></span>
+    <img src="..." class="card-img-top popup-img" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Pokemon name</h5>
+        <p id="popup-text" class="card-text">Some quick example text to build on the card title and make up the bulk of
+            the card's
+            content.</p>
+        <form class="" id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">
+        </form>
+    </div>
 </div>
-
-<style>
-    #popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-    }
-
-    .popup-close {
-        cursor: pointer;
-    }
-</style>

@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
-{% for c in catalog %}
-	{{ c.id }}
-	{{ c.name }}
-    <br>
-{% endfor %}
-
+    {% for c in catalog %}
+        <div class="container mt-5">
+            <a href="#" class="btn btn-lg custom-btn">Bouton avec Fond d'écran</a>
+        </div>
+        {{ c.id }}
+        {{ c.name }}
+        <br>
+    {% endfor %}
 {% endblock %}
