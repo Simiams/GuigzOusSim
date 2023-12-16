@@ -2,20 +2,20 @@
 
 {% block body %}
     <h1>{{ page_info.title }}</h1>
-    teams = {{ teams }}
+        teams = {{ teams }}
 
-    {% for pokemon in pokemons %}
-        <p>{{ forloop.counter }}. {{ pokemon.name }}</p>
-        <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid pokemon_img" data-team-ids="{{ teams }}"
-             data-pokemon-name="{{ pokemon.name }}" data-pokemon-id="{{ pokemon.id }}"
-             data-full-pokemon="{{ pokemon }}">
-    {% endfor %}
+        {% for pokemon in pokemons %}
+            <p>{{ forloop.counter }}. {{ pokemon.name }}</p>
+            <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid pokemon_img" data-team-ids="{{ teams }}"
+                 data-pokemon-name="{{ pokemon.name }}" data-pokemon-id="{{ pokemon.id }}"
+                 data-full-pokemon="{{ pokemon }}">
+        {% endfor %}
 
 
-    {% if page_info.display_button %}
-        <a href="{% url 'see_all_pokemon_by_catalog' catalog=page_info.catalog_name id=page_info.id %}?max={{ page_info.max_pokemon }}">Aller
-            vers l'URL
-            avec
-            paramètre</a>
-    {% endif %}
+        {% if page_info.display_button %}
+            <a href="{% url 'see_all_pokemon_by_catalog' catalog=page_info.catalog_name id=page_info.id %}?max={{ page_info.max_pokemon }}">Aller
+                vers l'URL
+                avec
+                paramètre</a>
+        {% endif %}
 {% endblock %}

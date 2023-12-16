@@ -2,15 +2,137 @@
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/modals/card.css' %}">
 {% endblock %}
-<div id="popup" class="card" style="width: 18rem;">
+
+{#<div id="popup" class="card" style="width: 18rem;">#}
+{#    <span class="popup-close btn-close"></span>#}
+{#    <img src="..." class="card-img-top popup-img" alt="...">#}
+{#    <div class="card-body">#}
+{#        <h5 class="card-title">Pokemon name</h5>#}
+{#        <p id="popup-text" class="card-text">Some quick example text to build on the card title and make up the bulk of#}
+{#            the card's#}
+{#            content.</p>#}
+{#        <form class="" id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">#}
+{#        </form>#}
+{#    </div>#}
+{#</div>#}
+
+
+<style>
+    .popup-close {
+        cursor: pointer;
+    }
+
+    .container {
+        width: 350px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
+
+    #card {
+        background: radial-gradient(circle at 50% 0%, rgb(1, 144, 255) 36%, rgb(255, 255, 255) 36%);
+        position: relative;
+        width: 100%;
+        padding: 30px 20px;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+    }
+
+    #card img {
+        display: block;
+        width: 180px;
+        max-height: 200px;
+        position: relative;
+        margin: 20px auto;
+    }
+
+    .hp {
+        width: 80px;
+        background-color: #ffffff;
+        text-align: center;
+        padding: 8px 0;
+        border-radius: 30px;
+        margin-left: auto;
+        font-weight: 400;
+    }
+
+    .poke-name {
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .types {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0 40px 0;
+    }
+
+    .hp span,
+    .types span {
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        font-weight: 600;
+    }
+
+    .types span {
+        padding: 5px 20px;
+        border-radius: 20px;
+        color: #ffffff;
+    }
+
+    .stats {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .stats p {
+        color: #404060;
+    }
+
+    #btn {
+        display: block;
+        padding: 15px 60px;
+        font-size: 18px;
+        background-color: #101010;
+        color: #ffffff;
+        position: relative;
+        margin: 30px auto;
+        border: none;
+        border-radius: 5px;
+    }
+</style>
+
+<div id="popup" class="container">
     <span class="popup-close btn-close"></span>
-    <img src="..." class="card-img-top popup-img" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Pokemon name</h5>
-        <p id="popup-text" class="card-text">Some quick example text to build on the card title and make up the bulk of
-            the card's
-            content.</p>
-        <form class="" id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">
-        </form>
+
+    <div id="card">
+        <p class="hp">
+            <span>HP</span>
+            10
+        </p>
+        <img src="...">
+        <h2 class="poke-name">pokeName</h2>
+        <div class="types">
+
+        </div>
+        <div class="stats">
+            <div>
+                <h3>12</h3>
+                <p>Attack</p>
+            </div>
+            <div>
+                <h3>20</h3>
+                <p>Defense</p>
+            </div>
+            <div>
+                <h3>23</h3>
+                <p>Speed</p>
+            </div>
+        </div>
+        <form class="" id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">#}
+            </form>
     </div>
 </div>
