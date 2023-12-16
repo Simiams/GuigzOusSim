@@ -18,6 +18,15 @@
 
 
 <style>
+    #popup {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
     .popup-close {
         cursor: pointer;
     }
@@ -133,6 +142,6 @@
             </div>
         </div>
         <form class="" id="container_team" action="{% url 'add_pokemon_to_team' %}" method="post">#}
-            </form>
+        </form>
     </div>
 </div>
