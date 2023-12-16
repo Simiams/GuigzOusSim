@@ -7,32 +7,35 @@
 
 {% block body %}
     <div class="main">
-    {% for team in pokemon_by_team %}
-
-    {% endfor %}
-
-
-        <div class="left">
-            <div class="p1">
-                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 300px 0 0 50px">
+        {% for pt in pokemon_teams %}
+            <div class="left" id="{{ pt.team.id }}" style="display: {{ forloop.first|yesno:"block,none" }}">
+                <h2 class="left-title">{{ pt.team.name }}</h2>
+                <div class="p1">
+                    <img src="{{ pt.pokemons.0.sprite_front }}" class="img-fluid pokemon_img" alt=""
+                         style="margin: 300px 0 0 50px">
+                </div>
+                <div class="p2">
+                    <img src="{{ pt.pokemons.1.sprite_front }}" class="img-fluid pokemon_img" alt=""
+                         style="margin: 50px 0 0 200px">
+                </div>
+                <div class="p3">
+                    <img src="{{ pt.pokemons.2.sprite_front }}" class="img-fluid pokemon_img" alt=""
+                         style="margin: 50px 0 0 500px">
+                </div>
+                <div class="p4">
+                    <img src="{{ pt.pokemons.3.sprite_front }}" class="img-fluid pokemon_img" alt=""
+                         style="margin: 300px 0 0 650px">
+                </div>
+                <div class="p5">
+                    <img src="{{ pt.pokemons.4.sprite_front }}" class="img-fluid pokemon_img" alt=""
+                         style="margin: 550px 0 0 200px">
+                </div>
+                <div class="p6">
+                    <img src="{{ pt.pokemons.5.sprite_front }}" class="img-fluid pokemon_img" alt=""
+                         style="margin: 550px 0 0 500px">
+                </div>
             </div>
-            <div class="p2">
-                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 50px 0 0 200px">
-            </div>
-            <div class="p3">
-                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 50px 0 0 500px">
-            </div>
-            <div class="p4">
-                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 300px 0 0 650px">
-            </div>
-            <div class="p5">
-                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 550px 0 0 200px">
-            </div>
-            <div class="p6">
-                <img src="../static/R.png" class="img-fluid pokemon_img" alt="" style="margin: 550px 0 0 500px">
-            </div>
-        </div>
-
+        {% endfor %}
 
         <div class="right">
             <div class="right-top">
