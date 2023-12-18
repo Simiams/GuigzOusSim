@@ -15,6 +15,7 @@ Pour des soucis de simplicsité, on stocke en base uniquement le information sui
 ### Pokemon
 - id
 - id (coté PokeApi)
+L'interet d'un table ici est simplement de l'anticipation sur les futures fonctionnalités.
 ### Teams
 - id
 - name
@@ -22,9 +23,7 @@ Pour des soucis de simplicsité, on stocke en base uniquement le information sui
 ---
 # BACKEND
 ## catalog
-
 Ce package regroupe les fonctionnalité de recherche par catégorie de pokeon (type, pokedex, type d'oeuf, genre, etc...)
-
 ### EndPoints
 
 - https://pokeapi.co/api/v2/pokemon/
@@ -34,7 +33,6 @@ Ce package regroupe les fonctionnalité de recherche par catégorie de pokeon (t
 - https://pokeapi.co/api/v2/gender/
 - https://pokeapi.co/api/v2/pokemon-habitat/
 - https://pokeapi.co/api/v2/growth-rate/
-
 
 Il retourne une liste de pokemon avec leurs nom et url.
 
