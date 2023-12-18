@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log("test1")
     let arrowLeft = document.querySelector(".arrow-left")
     let arrowRight = document.querySelector(".arrow-right")
-    let deleteTeam = document.querySelectorAll(".delete-team")
     let allLeft = document.querySelectorAll(".left");
+    let deleteTeam = document.getElementById("delete-team");
 
     let currenIndex = 0
     let currentLeft = allLeft[currenIndex]
@@ -11,24 +11,22 @@ document.addEventListener('DOMContentLoaded', function () {
     currentLeft.style.display = "block"
 
     resetStyle(allLeft, currenIndex)
+    deleteTeam.setAttribute("data-team-id", allLeft[currenIndex].getAttribute("id"))
+
 
     arrowLeft.addEventListener("click", function () {
         currenIndex = printNext(allLeft, currenIndex, -1)
+        deleteTeam.setAttribute("data-team-id", allLeft[currenIndex].getAttribute("id"))
     })
     arrowRight.addEventListener("click", function () {
         currenIndex = printNext(allLeft, currenIndex, 1)
+        deleteTeam.setAttribute("data-team-id", allLeft[currenIndex].getAttribute("id"))
     })
-    deleteTeam.addEventListener("click", function (event) {
-        event.preventDefault();
-        const nameInput = document.getElementById('nameTeam').value;
-        popupTeam.style.display = 'none';
 
+    deleteTeam.addEventListener("click", function () {
         $.ajax({
-            type: 'POST',
-            url: popupFormTeam.action,
-            data: {
-                team_name: nameInput,
-            },
+            type: 'DELETE',
+            url: `/delete_team/${deleteTeam.getAttribute("data-team-id")}`,
             success: function (data) {
                 console.log(data)
                 console.log("Success: ", data);
@@ -40,16 +38,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(() => {
             location.reload();
         });
-    });
+    })
 })
 
-
+//todo refacto
 document.addEventListener('DOMContentLoaded', function () {
     console.log("test2")
     const openPopupBtnTeam = document.getElementById('openPopupBtnTeam');
     const popupTeam = document.getElementById('popupTeam');
     const closePopupBtnTeam = document.getElementById('closePopupBtnTeam');
     const popupFormTeam = document.getElementById('popupFormTeam');
+    const deleteTeam = document.getElementById("delete-team");
 
     openPopupBtnTeam.addEventListener('click', function () {
         popupTeam.style.display = 'flex';
@@ -58,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     closePopupBtnTeam.addEventListener('click', function () {
         popupTeam.style.display = 'none';
     });
+
 
     popupFormTeam.addEventListener('submit', function (event) {
         event.preventDefault();
