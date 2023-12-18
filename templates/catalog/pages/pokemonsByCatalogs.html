@@ -5,7 +5,11 @@
 <link rel="stylesheet" href="{% static 'css/catalog/cardsSpamm.css' %}">
 {% endblock %}
 
+
 {% block body %}
+    <a href="/">
+        <img src="{% static 'img/R.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px;">
+    </a>
     <div class="card-container">
         {% for pokemon in pokemons %}
             <div class="card" style="background-color: rgba(246,240,240,0.53);">
