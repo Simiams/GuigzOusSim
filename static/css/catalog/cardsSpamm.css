@@ -42,24 +42,3 @@ body {
         margin: 10px 0;
     }
 }
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(235deg, #89ff00, #060c21, #00bcd4);
-    z-index: -1;
-    border-radius: 2rem;
-    transition: all .5s ease-in-out;
-}
-
-.card:hover::before {
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    opacity: .6;
-}
