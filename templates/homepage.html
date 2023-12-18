@@ -12,27 +12,33 @@
                 <h2 class="left-title">{{ pt.team.name }}</h2>
                 <div class="p1">
                     <img src="{{ pt.pokemons.0.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 300px 0 0 50px">
+                         style="margin: 300px 0 0 50px" data-full-pokemon="{{ pt.pokemons.0 }}"
+                         data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p2">
                     <img src="{{ pt.pokemons.1.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 50px 0 0 200px">
+                         style="margin: 50px 0 0 200px" data-full-pokemon="{{ pt.pokemons.1 }}"
+                         data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p3">
                     <img src="{{ pt.pokemons.2.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 50px 0 0 500px">
+                         style="margin: 50px 0 0 500px" data-full-pokemon="{{ pt.pokemons.2 }}"
+                         data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p4">
                     <img src="{{ pt.pokemons.3.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 300px 0 0 650px">
+                         style="margin: 300px 0 0 650px" data-full-pokemon="{{ pt.pokemons.3 }}"
+                         data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p5">
                     <img src="{{ pt.pokemons.4.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 550px 0 0 200px">
+                         style="margin: 550px 0 0 200px" data-full-pokemon="{{ pt.pokemons.4 }}"
+                         data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p6">
                     <img src="{{ pt.pokemons.5.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 550px 0 0 500px">
+                         style="margin: 550px 0 0 500px" data-full-pokemon="{{ pt.pokemons.5 }}"
+                         data-current-team="{{ pt.team }}">
                 </div>
             </div>
         {% endfor %}
@@ -41,46 +47,66 @@
             <div class="right-top">
                 <div class="buttons">
                     <div class="btn-catalog">
-                        <a href="#">
+                        <a href="catalog/type">
                             Type
                         </a>
                     </div>
                     <div class="btn-catalog">
-                        <a href="#">
+                        <a href="catalog/pokedex">
+                            Pokedex
+                        </a>
+                    </div>
+                    <div class="btn-catalog">
+                        <a href="catalog/egg-group">
                             Egg group
                         </a>
                     </div>
                     <div class="btn-catalog">
-                        <a href="#">
+                        <a href="catalog/gender">
                             Gender
                         </a>
                     </div>
                     <div class="btn-catalog">
-                        <a href="#">
+                        <a href="catalog/habitat">
                             Habitat
                         </a>
                     </div>
                     <div class="btn-catalog">
-                        <a href="#">
+                        <a href="catalog/growth-rate">
                             Growth Rate
                         </a>
                     </div>
                     <div class="btn-catalog">
-                        <a href="#">
-                            Create new Team
-                        </a>
+                        <button id="openPopupBtnTeam">
+                            Create Team
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="right-bottom">
                 <button class="arrow arrow-left"><=</button>
+
+                <form id="popupFormTeam" action="{% url 'add_team' %}" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="nameTeam" name="name" value="" required>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <button class="delete-team">Poubemme</button>
+
                 <button class="arrow arrow-right">=></button>
             </div>
         </div>
     </div>
 {% endblock %}>
 
+{% block include %}
+    {% include "modals/card.html" %}
+    {% include "modals/createTeam.html" %}
+{% endblock %}
+
 
 {% block script %}
+    <script type="text/javascript" src="{% static 'js/api.js' %}"></script>
     <script src="{% static 'js/homepage.js' %}"></script>
 {% endblock %}

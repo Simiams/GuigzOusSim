@@ -1,9 +1,11 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from dto.dtos import PokemonDTO
+from dtos import *
+from dtos.PokemonDTO import PokemonDTO
+from dtos.TeamDTO import TeamDTO
 from .api import get_pokemon_by_id
 from .models import PokemonTeam, Pokemon
 from .serializers import PokemonSerializer
@@ -21,9 +23,10 @@ def get_all_teams(request):
 def see_homepage(request):
     pokemon_teams = PokemonTeam.objects.all()
 
-    pokemons_by_team = [{"team": t, "pokemons": convert_pokemon_bdd_in_pokemon_dto(t.members.all())} for t in
-                        pokemon_teams]
-    print(pokemons_by_team)
+    pokemons_by_team = [
+        {"team": convert_team_bdd_in_team_dto(t), "pokemons": convert_pokemon_bdd_in_pokemon_dto(t.members.all())} for t
+        in
+        pokemon_teams]
     return render(request, 'homepage.html', {"pokemon_teams": pokemons_by_team})
 
 
@@ -31,12 +34,15 @@ def convert_pokemon_bdd_in_pokemon_dto(pokemons_in_bdd):
     pokemons_in_api = []
     for pokemon_in_bdd in pokemons_in_bdd:
         pokemon_in_api = get_pokemon_by_id(pokemon_in_bdd.poke_api_id)
+        pokemon_in_api["id_in_bdd"] = pokemon_in_bdd.id
         pokemons_in_api.append(pokemon_in_api)
     return [PokemonDTO(p) for p in pokemons_in_api]
 
 
-## todo less than 6 pokemons
-@api_view(['POST'])
+def convert_team_bdd_in_team_dto(team_in_bdd):
+    return TeamDTO(team_in_bdd)
+
+
 def add_pokemon_to_team(request):
     if request.method == 'POST':
         try:
@@ -60,7 +66,7 @@ def add_pokemon_to_team(request):
 
 
 @api_view(['POST'])
-def     add_team(request):
+def add_team(request):
     if request.method == 'POST':
         try:
             team_name = request.data.get('team_name')
@@ -70,3 +76,19 @@ def     add_team(request):
         except ValueError:
             return JsonResponse({'status': 'error', 'message': 'Invalid Team name'}, status=400)
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+
+
+def delete_pokemon_from_team(id_pokemon):
+    entite = get_object_or_404(Pokemon, pk=id_pokemon)
+    entite.delete()
+    return JsonResponse({'status': 'success'})
+
+
+@api_view(['POST'])
+def management_pokemon(request):
+    if request.data.get('management_type') == 'create':
+        return add_pokemon_to_team(request)
+    elif request.data.get('management_type') == 'delete':
+        return delete_pokemon_from_team(int(request.data.get('pokemon_id')))
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid management type'}, status=400)

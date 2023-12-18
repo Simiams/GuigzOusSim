@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/catalog/index.css' %}">
+{% endblock %}
 
 {% block body %}
-    {% for c in catalog %}
-        <div class="container mt-5">
-            <a href="#" class="btn btn-lg custom-btn">Bouton avec Fond d'écran</a>
-        </div>
-        {{ c.id }}
-        {{ c.name }}
-        <br>
-    {% endfor %}
+<div class="card-container">
+{% for c in catalog %}
+    <div class="card" style="background-color: rgba(246,240,240,0.53);">
+        <a href="{% url 'see_all_pokemon_by_catalog' catalog=catalog_name id=c.name %}">
+            <img src="{% static c.theme.icon %}" alt="{{ "icon" }}">
+            {{ c.name }}
+        </a>
+    </div>
+{% endfor %}
+</div>
 {% endblock %}

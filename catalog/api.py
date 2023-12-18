@@ -6,7 +6,7 @@ import requests
 from dotenv import load_dotenv
 
 from catalog.utils import get_pokemons_urls_by_catalog_name, get_pokemon_id_by_url
-from dto.dtos import PokemonDTO
+from dtos.PokemonDTO import PokemonDTO
 
 load_dotenv()
 
@@ -21,17 +21,18 @@ class Catalog:
 cache = []
 
 def get_all_catalog(catalog_url):
+    print("[INFO][GetAllCatalog] " + catalog_url)
     res = requests.get(catalog_url)
     return [{"name": r["name"], "id": r["url"].split("/")[-2]} for r in res.json()['results']]
 
 
 async def get_pokemons_by_catalog_id(catalog_name, catalog_url, id, max):
+    print("[INFO][GetPokemonsByCatalogId] " + catalog_url + f'{id}')
     res = requests.get(catalog_url + f'{id}')
     pokemon_urls = get_pokemons_urls_by_catalog_name(catalog_name, res)
     pokemon_urls_not_in_cache = []
     pokemons_in_cache = []
     for url in pokemon_urls[0:int(max)]:
-        print(url)
         pokemon_in_cache = get_pokemon_in_cache(catalog_name, id, get_pokemon_id_by_url(url))
         if pokemon_in_cache is None:
             pokemon_urls_not_in_cache.append(url)
@@ -55,6 +56,7 @@ async def get_pokemons_by_urls(catalog_name, id, pokemon_urls, pokemons):
 
 async def get_pokemon_by_url(url):
     async with httpx.AsyncClient() as client:
+        print("[INFO][GetPokemonByUrl] " + url)
         res = await client.get(url)
         return res.json()
 

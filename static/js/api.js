@@ -1,9 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var popup = document.querySelector('#popup');
-    var closeBtn = document.querySelector('.popup-close');
-    var container_team = popup.querySelector('#container_team');
+    console.log("test")
+    const _popup = document.querySelector('#popup');
+    const _closeBtn = document.querySelector('.popup-close');
+    const _hp = document.querySelector('#hp');
+    const _attack = document.querySelector('#attack');
+    const _defense = document.querySelector('#defense');
+    const _speed = document.querySelector('#speed');
+    const _image = document.querySelector('#image');
+    const _name = document.querySelector('#name');
+    const _abilities = document.querySelector('#abilities');
+    const _card = document.querySelector('#card');
+    const _container_team = document.querySelector('#container_team');
 
-    closeBtn.addEventListener('click', function () {
+    const container_team = popup.querySelector('#container_team');
+
+    _closeBtn.addEventListener('click', function () {
         popup.style.display = 'none';
     });
 
@@ -15,45 +26,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.pokemon_img').forEach(function (trigger) {
         trigger.addEventListener('click', function () {
-            var url_img = trigger.getAttribute('src');
-            var pokemon_name = trigger.getAttribute('data-pokemon-name');
-            var pokemon_id = trigger.getAttribute('data-pokemon-id');
-            var teams_id = trigger.getAttribute('data-team-ids');
-            var pokemon = trigger.getAttribute('data-full-pokemon');
-            console.log("pokemon")
-            console.log(pokemon)
-            console.log("pokemon")
+            let team_buttons = [];
+            let already_in_team = true
+            let pokemon = JSON.parse(trigger.getAttribute('data-full-pokemon'));
+            let t = trigger.getAttribute('data-current-team')
+            if (t === null) {
+                t = trigger.getAttribute('data-full-team')
+                t = t.replace(/'/g, '')
+                already_in_team = false
+            }
+            console.log(t)
+            let team = JSON.parse(t);
+            console.log("ou")
+            console.log(pokemon.id_in_bdd);
+            console.log(team);
 
+            _popup.style.display = 'block';
+            _image.setAttribute('src', pokemon.sprite_front);
+            _hp.textContent = pokemon.stats.find(stat => stat.name === 'hp').base_stat;
+            _attack.textContent = pokemon.stats.find(stat => stat.name === 'attack').base_stat;
+            _defense.textContent = pokemon.stats.find(stat => stat.name === 'defense').base_stat;
+            _speed.textContent = pokemon.stats.find(stat => stat.name === 'speed').base_stat;
+            _name.textContent = pokemon.name;
+            _abilities.innerHTML = pokemon.abilities.map(ability => `<p>${ability.name}</p>`);
+            _card.style.background = "radial-gradient(circle at 50% 0%, rgb(1, 144, 255) 36%, rgb(255, 255, 255) 36%)";
 
-            popup.style.display = 'block';
-            popup.querySelector('.popup-img').setAttribute('src', url_img);
+            if (already_in_team) {
+                team_buttons.push(`<button type="button" class="team-button btn btn-danger" data-management-type="delete" data-team-id="${team.id}">Virer de l'équipe</button>`);
+            } else {
+                for (t in team) {
+                    team_buttons.push(`<button type="button" class="team-button btn btn-primary" data-management-type="create" data-team-id="${team[t].id}">${team[t].name}</button>`);
+                }
+            }
+            console.log("team_buttons")
+            _container_team.innerHTML = team_buttons;
 
-            var button_teams = JSON.parse(teams_id).map(function (team_id) {
-                return `
-                    <button type="button" name="team_id" class="team-button btn btn-primary " data-team-id="${team_id}">Add to Team ${team_id}</button>
-                `;
-            });
-            container_team.innerHTML = button_teams;
+            console.log(pokemon.id_in_bdd)
 
             document.querySelectorAll('.team-button').forEach(function (button) {
                 button.addEventListener('click', function (event) {
                     event.preventDefault();
-                    var teamId = button.getAttribute('data-team-id');
-
-                    container_team.setAttribute('data-custom', 'your_custom_value');
-
-                    console.log("Submitting data: ", {
-                        pokemon_id: trigger.getAttribute('data-pokemon-id'),
-                        team_id: teamId,
-                        pokemon_name: pokemon_name
-                    });
+                    let teamId = button.getAttribute('data-team-id');
+                    let managementType = button.getAttribute('data-management-type');
+                    let id = pokemon.id_in_bdd === null ? pokemon.id : pokemon.id_in_bdd;
 
                     $.ajax({
                         type: 'POST',
                         url: container_team.action,
                         data: {
-                            pokemon_id: trigger.getAttribute('data-pokemon-id'),
-                            team_id: teamId
+                            pokemon_id: id,
+                            team_id: teamId,
+                            management_type: managementType
                         },
                         success: function (data) {
                             console.log(data)
@@ -63,214 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             console.error("Error: ", textStatus, errorThrown);
                             console.log("Response Text: ", xhr.responseText);
                         }
+                    }).then(() => {
+                        if (already_in_team) {
+                            location.reload();
+                        }
                     });
                 });
             });
         });
     });
 });
-
-
-// // document.addEventListener('DOMContentLoaded', function () {
-// //     var popup = document.querySelector('#popup');
-// //     var closeBtn = document.querySelector('.popup-close');
-// //     var popupText = popup.querySelector('#popup-text');
-// //     var container_team = popup.querySelector('#container_team');
-// //
-// //     closeBtn.addEventListener('click', function () {
-// //         popup.style.display = 'none';
-// //     });
-// //
-// //     window.addEventListener('click', function (event) {
-// //         if (event.target === popup) {
-// //             popup.style.display = 'none';
-// //         }
-// //     });
-// //
-// //     document.querySelectorAll('.pokemon_img').forEach(function (trigger) {
-// //         trigger.addEventListener('click', function () {
-// //             var url_img = trigger.getAttribute('src');
-// //             var pokemon_name = trigger.getAttribute('data-pokemon-name');
-// //             var teams_id = trigger.getAttribute('data-team-ids');
-// //
-// //             popup.style.display = 'block';
-// //             popupText.textContent = pokemon_name;
-// //             popup.querySelector('.popup-img').setAttribute('src', url_img);
-// //
-// //             var button_teams = JSON.parse(teams_id).map(function (team_id) {
-// //                 return `
-// //                     <button type="submit" name="team_id" class="team-button" data-team-id="${team_id}">Add to Team ${team_id}</button>
-// //                 `;
-// //             });
-// //             container_team.innerHTML = button_teams;
-// //
-// //             document.querySelectorAll('.team-button').forEach(function (button) {
-// //                 button.addEventListener('click', function () {
-// //                     var teamId = button.getAttribute('data-team-id');
-// //                     console.log("Submitting data: ", {
-// //                         pokemon_id: trigger.getAttribute('data-pokemon-id'),
-// //                         team_id: teamId
-// //                     });
-// //
-// //                     $.ajax({
-// //                         type: 'POST',
-// //                         url: container_team.action,
-// //                         data: $(container_team).serialize(),
-// //                         success: function (data) {
-// //                             console.log("Success: ", data);
-// //                         },
-// //                         error: function (xhr, textStatus, errorThrown) {
-// //                             console.error("Error: ", textStatus, errorThrown);
-// //                             console.log("Response Text: ", xhr.responseText);
-// //                         }
-// //                     });
-// //                 });
-// //             });
-// //         });
-// //     });
-// // });
-//
-//
-// document.addEventListener('DOMContentLoaded', function () {
-//     var pokemon_img = document.querySelectorAll('.pokemon_img');
-//     var popup = document.querySelector('#popup');
-//     var closeBtn = document.querySelector('.popup-close');
-//     var popupText = popup.querySelector('#popup-text');
-//     var container_team = popup.querySelector('#container_team');
-//
-//     pokemon_img.forEach(function (trigger) {
-//         trigger.addEventListener('click', function () {
-//             url_img = trigger.getAttribute('src');
-//             pokemon_name = trigger.getAttribute('data-pokemon-name');
-//             teams_id = trigger.getAttribute('data-team-ids');
-//
-//             popup.style.display = 'block';
-//             popupText.textContent = pokemon_name;
-//             popup.querySelector('.popup-img').setAttribute('src', url_img);
-//
-//             container_team.innerHTML =  `
-//                     <input type="hidden" id="pokemon_id" name="pokemon_id" value="123">
-//              `
-//
-//             button_teams = JSON.parse(teams_id).map(function (team_id) {
-//                 return `
-//                         <button type="submit" name="team_id" class="team-button" data-team-id="${team_id}">Add to Team ${team_id}</button>
-//                        `;
-//             });
-//             container_team.innerHTML += button_teams;
-//
-//
-//             // pokemonIdInput = document.getElementById('pokemon_id');
-//             // document.querySelectorAll('.team-button').forEach(function (button) {
-//             //     button.addEventListener('click', function () {
-//             //         var teamId = button.getAttribute('data-team-id');
-//             //         console.log("Submitting data: ", {pokemon_id: pokemonIdInput.value, team_id: teamId});
-//             //     });
-//             // });
-//         });
-//     });
-//
-//     closeBtn.addEventListener('click', function () {
-//         popup.style.display = 'none';
-//     });
-//
-//     window.addEventListener('click', function (event) {
-//         if (event.target === popup) {
-//             popup.style.display = 'none';
-//         }
-//     });
-//
-//     $(document).ready(function () {
-//         $('#container_team').submit(function (event) {
-//             event.preventDefault();
-//             console.log(this)
-//             console.log($(this).attr('action'))
-//             console.log($(this).serialize())
-//             $.ajax({
-//                 type: 'POST',
-//                 url: $(this).attr('action'),
-//                 data: $(this).serialize(),
-//                 success: function (data) {
-//                     console.log(data);
-//                 },
-//                 error: function (error) {
-//                     console.error(error);
-//                 }
-//             });
-//         });
-//     });
-// });
-//
-//
-// // document.addEventListener('DOMContentLoaded', function () {
-// //     var pokemon_img = document.querySelectorAll('.pokemon_img');
-// //     var popup = document.querySelector('#popup');
-// //     var closeBtn = document.querySelector('.popup-close');
-// //     var popupText = popup.querySelector('#popup-text');
-// //     var container_team = popup.querySelector('#container_team');
-// //
-// //     pokemon_img.forEach(function (trigger) {
-// //         trigger.addEventListener('click', function () {
-// //             url_img = trigger.getAttribute('src');
-// //             pokemon_name = trigger.getAttribute('data-pokemon-name');
-// //             pokemon_id = trigger.getAttribute('data-pokemon-id');
-// //             teams_id = trigger.getAttribute('data-team-ids');
-// //
-// //             popup.style.display = 'block';
-// //             popupText.textContent = pokemon_name;
-// //             popup.querySelector('.popup-img').setAttribute('src', url_img);
-// //             button_teams = JSON.parse(teams_id).map(function (team_id) {
-// //                 return `<button type="button" class="team-button" data-team-id="${team_id}">Add to Team ${team_id}</button>`;
-// //             });
-// //             container_team.innerHTML = button_teams;
-// //
-// //             // Add event listener to each team button
-// //             var teamButtons = document.querySelectorAll('.team-button');
-// //             teamButtons.forEach(function (button) {
-// //                 button.addEventListener('click', function () {
-// //                     var teamId = button.getAttribute('data-team-id');
-// //
-// //                     // Create a form dynamically
-// //                     var form = document.createElement('form');
-// //                     form.setAttribute('method', 'post');
-// //                     form.setAttribute('action', '{% url "add_pokemon_to_team" %}');
-// //
-// //                     // Add CSRF token
-// //                     var csrfInput = document.createElement('input');
-// //                     csrfInput.setAttribute('type', 'hidden');
-// //                     csrfInput.setAttribute('name', 'csrfmiddlewaretoken');
-// //                     csrfInput.setAttribute('value', '{{ csrf_token }}');
-// //                     form.appendChild(csrfInput);
-// //
-// //                     // Add Pokemon ID input
-// //                     var pokemonIdInput = document.createElement('input');
-// //                     pokemonIdInput.setAttribute('type', 'hidden');
-// //                     pokemonIdInput.setAttribute('name', 'pokemon_id');
-// //                     pokemonIdInput.setAttribute('value', pokemon_id);
-// //                     form.appendChild(pokemonIdInput);
-// //
-// //                     // Add Team ID input
-// //                     var teamIdInput = document.createElement('input');
-// //                     teamIdInput.setAttribute('type', 'hidden');
-// //                     teamIdInput.setAttribute('name', 'team_id');
-// //                     teamIdInput.setAttribute('value', teamId);
-// //                     form.appendChild(teamIdInput);
-// //
-// //                     // Append the form to the body and submit it
-// //                     document.body.appendChild(form);
-// //                     form.submit();
-// //                 });
-// //             });
-// //         });
-// //     });
-// //
-// //     closeBtn.addEventListener('click', function () {
-// //         popup.style.display = 'none';
-// //     });
-// //
-// //     window.addEventListener('click', function (event) {
-// //         if (event.target === popup) {
-// //             popup.style.display = 'none';
-// //         }
-// //     });
-// // });

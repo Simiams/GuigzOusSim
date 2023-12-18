@@ -1,12 +1,11 @@
 import os
 
-from asgiref.sync import sync_to_async
 from django.shortcuts import render
 
 from catalog.api import get_all_catalog, get_pokemons_by_catalog_id
-from catalog.utils import get_url_by_catalog_name
+from catalog.utils import get_url_by_catalog_name, get_theme_by_catalog
 from teams.models import PokemonTeam
-from catalog.utils import POKEMON_TYPE_ICONS
+from teams.views import convert_team_bdd_in_team_dto
 
 
 # Create your views here.
@@ -14,12 +13,12 @@ def see_all_catalog(request, catalog):
     url = get_url_by_catalog_name(catalog)
     if not url: return not_found(request)
     res = get_all_catalog(url)
-    for r in res:
-        r['icon'] = POKEMON_TYPE_ICONS[r['name']]
+    res = get_theme_by_catalog(res, catalog)
     return render(request, 'catalog/pages/index.html', {"catalog_name": catalog, "catalog": res})
 
 
 async def see_all_pokemons_by_catalog(request, catalog, id):
+    print(str(request))
     url = get_url_by_catalog_name(catalog)
 
     if not url: return not_found(request)
@@ -27,8 +26,7 @@ async def see_all_pokemons_by_catalog(request, catalog, id):
 
     pokemons = await get_pokemons_by_catalog_id(catalog, url, id, max)
 
-    teams = [t.id async for t in PokemonTeam.objects.all()]
-
+    teams = [convert_team_bdd_in_team_dto(t).to_json() async for t in PokemonTeam.objects.all()]
     display_button = len(pokemons) == int(max)
 
     return render(request, 'catalog/pages/catalog.html', {"pokemons": pokemons, "teams": teams,
@@ -36,8 +34,6 @@ async def see_all_pokemons_by_catalog(request, catalog, id):
                                                                         "catalog_name": catalog, "id": id,
                                                                         "max_pokemon": len(pokemons) + 25}})
 
+
 def not_found(request):
     return render(request, 'base.html')
-
-## todo make obj DTO
-

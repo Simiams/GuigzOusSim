@@ -1,21 +1,10 @@
 import os
 
+from catalog.constant import URL_BY_CATALOG, THEME_BY_CATALOG
+
 
 def get_url_by_catalog_name(catalog_name):
-    if catalog_name == "type":
-        return os.getenv('GET_TYPE')
-    if catalog_name == "pokedex":
-        return os.getenv('GET_POKEDEX')
-    if catalog_name == "egg-group":
-        return os.getenv('GET_EGG_GROUP')
-    if catalog_name == "gender":
-        return os.getenv('GET_GENDER')
-    if catalog_name == "habitat":
-        return os.getenv('GET_HABITAT')
-    if catalog_name == "growth-rate":
-        return os.getenv('GET_GROWTH_RATE')
-    else:
-        return None
+    return os.getenv(URL_BY_CATALOG.get(catalog_name, None))
 
 
 def get_pokemons_urls_by_catalog_name(catalog_name, res):
@@ -33,3 +22,12 @@ def get_pokemons_urls_by_catalog_name(catalog_name, res):
 
 def get_pokemon_id_by_url(url):
     return url.split("/")[-2]
+
+def get_theme_by_catalog(catalog, catalog_name):
+    print("get_theme_by_catalog")
+    for key, value in THEME_BY_CATALOG.items():
+        print(key + " " + catalog_name)
+        if key == catalog_name:
+            for c in catalog:
+                c["theme"] = THEME_BY_CATALOG[key].get(c["name"], None)
+            return catalog
