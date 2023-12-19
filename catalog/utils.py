@@ -1,6 +1,5 @@
 import os
 
-
 from catalog.constant import URL_BY_CATALOG, THEME_BY_CATALOG
 from dtos.CatalogDTO import CatalogDTO
 
@@ -32,6 +31,8 @@ def get_theme_by_catalog(catalog, catalog_type):
         if key == catalog_type:
             for c in catalog:
                 c.theme = THEME_BY_CATALOG[key].get(c.name, None)
+                print(c.theme)
+                c.theme["color"] = mitigate_color(THEME_BY_CATALOG[key].get(c.name)["color"], 50)
                 if c.theme:
                     new_catalog.append(c)
     return new_catalog
@@ -39,4 +40,18 @@ def get_theme_by_catalog(catalog, catalog_type):
 
 def create_catalog(catalog_type, catalog_name, pokemons):
     catalog = CatalogDTO(catalog_type, catalog_name, pokemons, theme=THEME_BY_CATALOG[catalog_type][catalog_name])
+    print(THEME_BY_CATALOG[catalog_type][catalog_name])
     return catalog
+
+
+def mitigate_color(code_hex, correction):
+    if not (code_hex.startswith("#") and len(code_hex) == 7):
+        raise ValueError("Le code hexadécimal doit être au format '#RRGGBB'.")
+    r = int(code_hex[1:3], 16)
+    g = int(code_hex[3:5], 16)
+    b = int(code_hex[5:7], 16)
+    r = max(0, min(255, r + correction))
+    g = max(0, min(255, g + correction))
+    b = max(0, min(255, b + correction))
+    nouveau_code_hex = "#{:02X}{:02X}{:02X}".format(int(r), int(g), int(b))
+    return nouveau_code_hex

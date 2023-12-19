@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block body %}
+    {{ catalog.0 }}
     <div class="spam-card-container" style="background-color: rgba(246,240,240,0.53);">
         {% for c in catalog %}
             <div class="spam-card" style="background-color: {{ c.theme.color }}">
