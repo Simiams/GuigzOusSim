@@ -31,7 +31,6 @@ def get_theme_by_catalog(catalog, catalog_type):
         if key == catalog_type:
             for c in catalog:
                 if THEME_BY_CATALOG[key].get(c.name, None):
-                    print(THEME_BY_CATALOG[key])
                     c.theme = THEME_BY_CATALOG[key].get(c.name, {}).copy()
                     c.theme["color"] = mitigate_color(THEME_BY_CATALOG[key].get(c.name, {})["color"], 50)
                     new_catalog.append(c)
@@ -39,9 +38,7 @@ def get_theme_by_catalog(catalog, catalog_type):
 
 
 def create_catalog(catalog_type, catalog_name, pokemons):
-    catalog = CatalogDTO(catalog_type, catalog_name, pokemons, theme=THEME_BY_CATALOG[catalog_type][catalog_name])
-    print(THEME_BY_CATALOG[catalog_type][catalog_name])
-    return catalog
+    return CatalogDTO(catalog_type, catalog_name, pokemons, theme=THEME_BY_CATALOG[catalog_type][catalog_name])
 
 
 def mitigate_color(code_hex, correction):
