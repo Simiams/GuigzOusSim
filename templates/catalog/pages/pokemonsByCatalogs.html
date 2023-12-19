@@ -2,27 +2,31 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/catalog/cardsSpamm.css' %}">
+    <link rel="stylesheet" href="{% static 'css/catalog/cardsSpamm.css' %}">
 {% endblock %}
 
 
 {% block body %}
+
+    {{ catalog }}
+
     <a href="/">
         <img src="{% static 'img/R.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px;">
     </a>
-    <div class="card-container">
-        {% for pokemon in pokemons %}
-            <div class="card" style="background-color: rgba(246,240,240,0.53);">
+    <div class="spam-card-container">
+        {% for pokemon in catalog.pokemons %}
+            <div class="spam-card" style="background-color: rgba(246,240,240,0.53);">
                 <p>{{ pokemon.name }}</p>
                 <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid pokemon_img"
                      data-full-pokemon="{{ pokemon }}" data-full-team="{{ teams }}">
             </div>
         {% endfor %}
     </div>
-
     {% if page_info.display_button %}
-        <a href="{% url 'see_all_pokemon_by_catalog' catalog=page_info.catalog_name id=page_info.id %}
-        ?max={{ page_info.max_pokemon }}">Charger plus</a>
+        <a href="{% url 'see_all_pokemon_by_catalog' catalog_type=catalog.catalog_type catalog_name=catalog.name %}?max={{ page_info.max_pokemon }}">Aller
+            vers l'URL
+            avec
+            paramètre</a>
     {% endif %}
 {% endblock %}
 

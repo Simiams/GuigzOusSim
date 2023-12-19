@@ -8,7 +8,7 @@ body {
     background: #ef6f6f;
 }
 
-.card-container {
+.spam-card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -16,7 +16,7 @@ body {
     gap: 20px;
 }
 
-.card {
+.spam-card {
     flex: 1 0 200px;
     margin: 10px;
     padding: 20px;
@@ -27,17 +27,17 @@ body {
     color: #333;
 }
 
-.card:hover {
+.spam-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     transform: scale(1.05);
 }
 
 @media screen and (max-width: 600px) {
-    .card-container {
+    .spam-card-container {
         flex-direction: column;
     }
 
-    .card {
+    .spam-card {
         flex: 1 0 auto;
         margin: 10px 0;
     }

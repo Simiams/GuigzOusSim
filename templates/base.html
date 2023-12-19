@@ -6,9 +6,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block style %}{% endblock %}
-    
+
     <title>{% block page_title %}{% endblock %}</title>
 </head>
 <body>
@@ -18,8 +17,6 @@
 
 {% block include %}
 {% endblock %}
-{#{% include "modals/card.html" %}#}
-{#{% include "modals/createTeam.html" %}#}
 
 {% block script %}
 {% endblock %}

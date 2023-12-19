@@ -50,3 +50,15 @@ ce package rassemble les fonctionnalité de gestion des équipes de pokemons.
 - Créer une équipe
 - Voir ses pokemons par équipe
 - Accéder au differents catalogues pour ajouter des pokemons à son équipe
+
+# Ameliorations futures
+- Ajouter une fonctionnalité de duel
+  - Stocker en base les PV des pokemons
+  - Calcule des dégats en fonction des types et des attaques
+  - Systeme de level, chaque combat gagné incrementer le level du pokemon ainsi que ses stats
+  - Un pokemon mort est supprimer de l'équipe, il faut donc le rajouter ce qui reset ces stats
+  
+
+- Ajouter une gestion des utilisateur
+  - Nouvelle table en base + liaison des équipes à un utilisateur
+  - Ajouter une fonctionnalité de login

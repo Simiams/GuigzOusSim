@@ -3,6 +3,8 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 {% endblock %}
 
 
@@ -22,7 +24,6 @@
                 <div class="p1">
                     <img src="
 
-
                             {% if pt.pokemons.0.sprite_front %}{{ pt.pokemons.0.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
                          class="img-fluid pokemon_img" alt=""
                          style="
@@ -32,7 +33,6 @@
                 </div>
                 <div class="p2">
                     <img src="
-
 
                             {% if pt.pokemons.1.sprite_front %}{{ pt.pokemons.1.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
                          class="img-fluid pokemon_img" alt=""
@@ -44,17 +44,15 @@
                 <div class="p3">
                     <img src="
 
-
                             {% if pt.pokemons.2.sprite_front %}{{ pt.pokemons.2.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
                          class="img-fluid pokemon_img" alt=""
                          style="
                                  {% if not pt.pokemons.2.sprite_front %} width:70px; top: 20%; left: 32%; filter: grayscale(100%) {% else %} top: 13%; left: 27%  {% endif %}"
-                                  data-full-pokemon="{{ pt.pokemons.2 }}"
+                         data-full-pokemon="{{ pt.pokemons.2 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p4">
                     <img src="
-
 
                             {% if pt.pokemons.3.sprite_front %}{{ pt.pokemons.3.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
                          class="img-fluid pokemon_img" alt=""
@@ -67,7 +65,6 @@
                 <div class="p5">
                     <img src="
 
-
                             {% if pt.pokemons.4.sprite_front %}{{ pt.pokemons.4.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
                          class="img-fluid pokemon_img" alt=""
                          style="
@@ -78,7 +75,6 @@
                 <div class="p6">
                     <img src="
 
-
                             {% if pt.pokemons.5.sprite_front %}{{ pt.pokemons.5.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
                          class="img-fluid pokemon_img" alt=""
                          style="{% if not pt.pokemons.5.sprite_front %} width:70px; top: 75%; left: 32%; filter: grayscale(100%) {% else %} top: 70%; left: 27%;  {% endif %}"
@@ -87,7 +83,6 @@
                 </div>
             </div>
         {% endfor %}
-
         <div class="right" style="background-image: url('static/img/homepage/pokedex.png')">
             <div class="right-top">
                 <div class="buttons">
