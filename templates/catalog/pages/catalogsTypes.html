@@ -7,15 +7,17 @@
 {% endblock %}
 
 {% block body %}
-    {{ catalog.0 }}
+    <a href="/">
+        <img src="{% static 'img/Poké_Ball_icon.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px; height: 12%; width: auto">
+    </a>
     <div class="spam-card-container" style="background-color: rgba(246,240,240,0.53);">
         {% for c in catalog %}
-            <div class="spam-card" style="background-color: {{ c.theme.color }}">
-                <a href="{% url 'see_all_pokemon_by_catalog' catalog_type=c.catalog_type catalog_name=c.name %}">
-                    <img src="{% static c.theme.icon %}" alt="{{ "icon" }}">
+            <a href="{% url 'see_all_pokemon_by_catalog' catalog_type=c.catalog_type catalog_name=c.name %}"; style="text-decoration: none">
+                <div class="spam-card" style="background-color: {{ c.theme.color }}; ">
+                    <img src="{% static c.theme.icon %}" alt="{{ "icon" }}" style="width: auto; height: 12rem">
                     {{ c.name }}
-                </a>
-            </div>
+                </div>
+            </a>
         {% endfor %}
     </div>
 {% endblock %}
