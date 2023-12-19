@@ -7,10 +7,10 @@ from dtos.StatDTO import StatDTO
 class PokemonDTO:
     def __init__(self, p):
         self.id = p["id"]
-        self.name = p["name"].capitalize()
+        self.name = p["name"]
         self.sprite_front = p["sprites"]["front_default"]
         self.sprite_back = p["sprites"]["back_default"]
-        self.type = p["types"]
+        self.type = p["types"][0]
         self.weight = p["weight"]
         self.height = p["height"]
         self.stats = [StatDTO(s) for s in p['stats']]
@@ -28,6 +28,5 @@ class PokemonDTO:
             "weight": self.weight,
             "height": self.height,
             "stats": [s.to_json() for s in self.stats],
-            "abilities": [a.to_json() for a in self.abilities]
+            "abilities": [a.to_json() for a in self.abilities],
         })
-

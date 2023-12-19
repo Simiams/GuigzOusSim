@@ -1,88 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("test1")
-    let arrowLeft = document.querySelector(".arrow-left")
-    let arrowRight = document.querySelector(".arrow-right")
-    let deleteTeam = document.querySelectorAll(".delete-team")
-    let allLeft = document.querySelectorAll(".left");
-
+    const allLeft = document.querySelectorAll(".left");
+    const deleteTeam = document.getElementById("delete-team");
     let currenIndex = 0
-    let currentLeft = allLeft[currenIndex]
-
+    const currentLeft = allLeft[currenIndex]
     currentLeft.style.display = "block"
 
+    manage_arrow(allLeft, currenIndex, deleteTeam)
     resetStyle(allLeft, currenIndex)
-
-    arrowLeft.addEventListener("click", function () {
-        currenIndex = printNext(allLeft, currenIndex, -1)
-    })
-    arrowRight.addEventListener("click", function () {
-        currenIndex = printNext(allLeft, currenIndex, 1)
-    })
-    deleteTeam.addEventListener("click", function (event) {
-        event.preventDefault();
-        const nameInput = document.getElementById('nameTeam').value;
-        popupTeam.style.display = 'none';
-
-        $.ajax({
-            type: 'POST',
-            url: popupFormTeam.action,
-            data: {
-                team_name: nameInput,
-            },
-            success: function (data) {
-                console.log(data)
-                console.log("Success: ", data);
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                console.error("Error: ", textStatus, errorThrown);
-                console.log("Response Text: ", xhr.responseText);
-            }
-        }).then(() => {
-            location.reload();
-        });
-    });
+    manage_delete_team(allLeft, currenIndex, deleteTeam)
+    manage_add_team()
 })
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("test2")
-    const openPopupBtnTeam = document.getElementById('openPopupBtnTeam');
-    const popupTeam = document.getElementById('popupTeam');
-    const closePopupBtnTeam = document.getElementById('closePopupBtnTeam');
-    const popupFormTeam = document.getElementById('popupFormTeam');
-
-    openPopupBtnTeam.addEventListener('click', function () {
-        popupTeam.style.display = 'flex';
-    });
-
-    closePopupBtnTeam.addEventListener('click', function () {
-        popupTeam.style.display = 'none';
-    });
-
-    popupFormTeam.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const nameInput = document.getElementById('nameTeam').value;
-        popupTeam.style.display = 'none';
-
-        $.ajax({
-            type: 'POST',
-            url: popupFormTeam.action,
-            data: {
-                team_name: nameInput,
-            },
-            success: function (data) {
-                console.log(data)
-                console.log("Success: ", data);
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                console.error("Error: ", textStatus, errorThrown);
-                console.log("Response Text: ", xhr.responseText);
-            }
-        }).then(() => {
-            location.reload();
-        });
-    });
-});
 
 
 const resetStyle = (allLeft, currentIndex) => {
@@ -101,9 +28,85 @@ const printNext = (allLeft, currenIndex, sens) => {
     } else {
         currenIndex += sens
     }
-    let currentLeft = allLeft[currenIndex]
+    const currentLeft = allLeft[currenIndex]
     currentLeft.style.display = "block"
     resetStyle(allLeft, currenIndex)
     return currenIndex
 }
 
+const request_api = (url, method, data) => {
+    $.ajax({
+        type: method,
+        url: url,
+        data: data,
+        success: function (data) {
+            console.log(data)
+            console.log("Success: ", data);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.error("Error: ", textStatus, errorThrown);
+            console.log("Response Text: ", xhr.responseText);
+        }
+    }).then(() => {
+        location.reload();
+    });
+}
+
+const manage_arrow = (allLeft, currenIndex, deleteTeam) => {
+    const arrowLeft = document.querySelector(".arrow-left")
+    const arrowRight = document.querySelector(".arrow-right")
+    const overlay = document.querySelector('.overlay');
+
+    arrowLeft.addEventListener("click", function () {
+        overlay.style.display = 'block';
+        setTimeout(function () {
+            overlay.style.display = 'none';
+        }, 1000);
+        setTimeout(function () {
+            currenIndex = printNext(allLeft, currenIndex, -1)
+            deleteTeam.setAttribute("data-team-id", allLeft[currenIndex].getAttribute("id"))
+        }, 500);
+    })
+
+    arrowRight.addEventListener("click", function () {
+        overlay.style.display = 'block';
+        setTimeout(function () {
+            overlay.style.display = 'none';
+        }, 1000);
+        setTimeout(function () {
+            currenIndex = printNext(allLeft, currenIndex, 1)
+            deleteTeam.setAttribute("data-team-id", allLeft[currenIndex].getAttribute("id"))
+        }, 500);
+    })
+}
+
+
+manage_delete_team = (allLeft, currenIndex, deleteTeam) => {
+    deleteTeam.setAttribute("data-team-id", allLeft[currenIndex].getAttribute("id"))
+
+    deleteTeam.addEventListener("click", function () {
+        request_api(`/delete_team/${deleteTeam.getAttribute("data-team-id")}`, 'DELETE', {})
+    })
+}
+
+manage_add_team = () => {
+    const openPopupBtnTeam = document.getElementById('openPopupBtnTeam');
+    const popupTeam = document.getElementById('popupTeam');
+    const closePopupBtnTeam = document.getElementById('closePopupBtnTeam');
+    const popupFormTeam = document.getElementById('popupFormTeam');
+
+    openPopupBtnTeam.addEventListener('click', function () {
+        popupTeam.style.display = 'flex';
+    });
+
+    closePopupBtnTeam.addEventListener('click', function () {
+        popupTeam.style.display = 'none';
+    });
+
+    popupFormTeam.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const nameInput = document.getElementById('nameTeam').value;
+        popupTeam.style.display = 'none';
+        request_api(popupFormTeam.action, 'POST', {team_name: nameInput});
+    });
+}

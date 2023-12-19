@@ -3,41 +3,100 @@
     <link rel="stylesheet" href="{% static 'css/modals/card.css' %}">
 {% endblock %}
 
-<div id="popup" class="container">
+
+
+<figure id="popup" class="card card--normal">
     <span class="popup-close btn-close"></span>
 
-    <div id="card">
-        <p class="hp" id="hp">
-            <span>HP</span>
-            10
-        </p>
-        <img src="..." id="image">
-        <h2 class="poke-name" id="name">pokeName</h2>
-        <div class="types">
-
-        </div>
-
-        <div id="abilities">
-        </div>
-
-        <div class="stats">
-            <div>
-                <h3 id="attack">12</h3>
-                <p>Attack</p>
-            </div>
-            <div>
-                <h3 id="defense">20</h3>
-                <p>Defense</p>
-            </div>
-            <div>
-                <h3 id="speed">23</h3>
-                <p>Speed</p>
-            </div>
-        </div>
-        <form class="" id="container_team" action="{% url 'management_pokemon' %}" method="post">
-        </form>
+    <div class="card__image-container">
+        <img id="image" alt="Pokemon Image"
+             class="card__image">
     </div>
-</div>
+    <figcaption class="card__caption">
+        <h1 class="card__name" id="name">Eevee</h1>
+
+        <h3 id="card-type" class="card__type">
+            normal
+        </h3>
+
+        <table class="card__stats">
+            <tbody>
+            <tr>
+                <th>HP</th>
+                <td id="hp">0</td>
+            </tr>
+            <tr>
+                <th>Attack</th>
+                <td id="attack">0</td>
+            </tr>
+
+            <tr>
+                <th>Defense</th>
+                <td id="defense">0</td>
+            </tr>
+
+            <tr>
+                <th>Special Attack</th>
+                <td id="special_attack">0</td>
+            </tr>
+            <tr>
+                <th>Special Defense</th>
+                <td id="special_defense">0</td>
+            </tr>
+            <tr>
+                <th>Speed</th>
+                <td id="speed">0</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="card__abilities">
+            <h4 class="card__ability">
+                <span class="card__label">Ability</span>
+                <div id="abilities"></div>
+            </h4>
+        </div>
+    </figcaption>
+    <form class="" id="container_team" action="{% url 'management_pokemon' %}" method="post">
+    </form>
+</figure>
+
+
+{#<div id="popup" class="container">#}
+{#    <span class="popup-close btn-close"></span>#}
+{##}
+{#    <div id="card">#}
+{#        <p class="hp" id="hp">#}
+{#            <span>HP</span>#}
+{#            10#}
+{#        </p>#}
+{#        <img src="..." id="image">#}
+{#        <h2 class="poke-name" id="name">pokeName</h2>#}
+{#        <div class="types">#}
+{##}
+{#        </div>#}
+{##}
+{#        <div id="abilities">#}
+{#        </div>#}
+{##}
+{#        <div class="stats">#}
+{#            <div>#}
+{#                <h3 id="attack">12</h3>#}
+{#                <p>Attack</p>#}
+{#            </div>#}
+{#            <div>#}
+{#                <h3 id="defense">20</h3>#}
+{#                <p>Defense</p>#}
+{#            </div>#}
+{#            <div>#}
+{#                <h3 id="speed">23</h3>#}
+{#                <p>Speed</p>#}
+{#            </div>#}
+{#        </div>#}
+{#        <form class="" id="container_team" action="{% url 'management_pokemon' %}" method="post">#}
+{#        </form>#}
+{#    </div>#}
+{#</div>#}
 
 {% block script %}
     <script src="{% static 'js/api.js' %}"></script>

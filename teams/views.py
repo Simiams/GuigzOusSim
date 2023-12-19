@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from dtos import *
 from dtos.PokemonDTO import PokemonDTO
 from dtos.TeamDTO import TeamDTO
 from .api import get_pokemon_by_id
@@ -78,12 +77,6 @@ def add_team(request):
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
 
 
-def delete_pokemon_from_team(id_pokemon):
-    entite = get_object_or_404(Pokemon, pk=id_pokemon)
-    entite.delete()
-    return JsonResponse({'status': 'success'})
-
-
 @api_view(['POST'])
 def management_pokemon(request):
     if request.data.get('management_type') == 'create':
@@ -92,3 +85,16 @@ def management_pokemon(request):
         return delete_pokemon_from_team(int(request.data.get('pokemon_id')))
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid management type'}, status=400)
+
+
+def delete_pokemon_from_team(id_pokemon):
+    entite = get_object_or_404(Pokemon, pk=id_pokemon)
+    entite.delete()
+    return JsonResponse({'status': 'success'})
+
+
+@api_view(['DELETE'])
+def delete_team(request, team_id):
+    team = get_object_or_404(PokemonTeam, pk=team_id)
+    team.delete()
+    return JsonResponse({'status': 'success'})

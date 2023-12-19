@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const _closeBtn = document.querySelector('.popup-close');
     const _hp = document.querySelector('#hp');
     const _attack = document.querySelector('#attack');
+    const _special_attack = document.querySelector('#special_attack');
     const _defense = document.querySelector('#defense');
+    const _special_defense = document.querySelector('#special_defense');
     const _speed = document.querySelector('#speed');
     const _image = document.querySelector('#image');
     const _name = document.querySelector('#name');
+    const _type = document.querySelector('#card-type');
     const _abilities = document.querySelector('#abilities');
-    const _card = document.querySelector('#card');
     const _container_team = document.querySelector('#container_team');
 
     const container_team = popup.querySelector('#container_team');
@@ -42,24 +44,27 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(team);
 
             _popup.style.display = 'block';
+            _popup.className = "card card--" +pokemon.type.type.name;
+            _type.textContent = pokemon.type.type.name;
             _image.setAttribute('src', pokemon.sprite_front);
             _hp.textContent = pokemon.stats.find(stat => stat.name === 'hp').base_stat;
             _attack.textContent = pokemon.stats.find(stat => stat.name === 'attack').base_stat;
+            _special_attack.textContent = pokemon.stats.find(stat => stat.name === 'special-attack').base_stat;
             _defense.textContent = pokemon.stats.find(stat => stat.name === 'defense').base_stat;
+            _special_defense.textContent = pokemon.stats.find(stat => stat.name === 'special-defense').base_stat;
             _speed.textContent = pokemon.stats.find(stat => stat.name === 'speed').base_stat;
             _name.textContent = pokemon.name;
-            _abilities.innerHTML = pokemon.abilities.map(ability => `<p>${ability.name}</p>`);
-            _card.style.background = "radial-gradient(circle at 50% 0%, rgb(1, 144, 255) 36%, rgb(255, 255, 255) 36%)";
+            _abilities.innerHTML = pokemon.abilities.map(ability => `<p>${ability.name}</p>`).join('');
 
             if (already_in_team) {
-                team_buttons.push(`<button type="button" class="team-button btn btn-danger" data-management-type="delete" data-team-id="${team.id}">Virer de l'équipe</button>`);
+                team_buttons.push(`<button type="button" class="team-button" style="background-color: #982b2b;" data-management-type="delete" data-team-id="${team.id}">Virer de l'équipe</button>`);
             } else {
                 for (t in team) {
-                    team_buttons.push(`<button type="button" class="team-button btn btn-primary" data-management-type="create" data-team-id="${team[t].id}">${team[t].name}</button>`);
+                    team_buttons.push(`<button type="button" class="team-button" data-management-type="create" data-team-id="${team[t].id}">${team[t].name}</button>`);
                 }
             }
             console.log("team_buttons")
-            _container_team.innerHTML = team_buttons;
+            _container_team.innerHTML = team_buttons.join('');
 
             console.log(pokemon.id_in_bdd)
 
@@ -69,6 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     let teamId = button.getAttribute('data-team-id');
                     let managementType = button.getAttribute('data-management-type');
                     let id = pokemon.id_in_bdd === null ? pokemon.id : pokemon.id_in_bdd;
+                    let _teamButton = document.querySelector(`.team-button[data-team-id="${teamId}"]`);
+                    _teamButton.style.backgroundColor = managementType === 'create' ? '#982b2b' : '#6ea5a9';
 
                     $.ajax({
                         type: 'POST',

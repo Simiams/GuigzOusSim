@@ -3,99 +3,117 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 {% endblock %}
 
 
 {% block body %}
     <div class="main">
+        <div class="left-bg" style="background-image: url('static/img/homepage/bg.png')"></div>
+        <div class="overlay hidden"></div>
+        {% if not pokemon_teams %}
+            <div class="left">
+                <h2 class="left-title">NoTeam</h2>
+            </div>
+        {% endif %}
         {% for pt in pokemon_teams %}
-            <div class="left" id="{{ pt.team.id }}" style="display: {{ forloop.first|yesno:"block,none" }}">
+            {# todo if not team not empty#}
+            <div class="left" id="{{ pt.team.id }}" style="display: {{ forloop.first|yesno:"block,none" }};">
                 <h2 class="left-title">{{ pt.team.name }}</h2>
                 <div class="p1">
-                    <img src="{{ pt.pokemons.0.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 300px 0 0 50px" data-full-pokemon="{{ pt.pokemons.0 }}"
+                    <img src="
+
+                            {% if pt.pokemons.0.sprite_front %}{{ pt.pokemons.0.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
+                         class="img-fluid pokemon_img" alt=""
+                         style="
+                                 {% if not pt.pokemons.0.sprite_front %} width:70px; top: 47%; left: 7%; filter: grayscale(100%) {% else %} top: 38%; left: 1%;   {% endif %}
+                                 " data-full-pokemon="{{ pt.pokemons.0 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p2">
-                    <img src="{{ pt.pokemons.1.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 50px 0 0 200px" data-full-pokemon="{{ pt.pokemons.1 }}"
+                    <img src="
+
+                            {% if pt.pokemons.1.sprite_front %}{{ pt.pokemons.1.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
+                         class="img-fluid pokemon_img" alt=""
+                         style="
+                                 {% if not pt.pokemons.1.sprite_front %} width:70px; top: 20%; left: 14%; filter: grayscale(100%) {% else %} top: 13%; left: 10%  {% endif %}
+                                 " data-full-pokemon="{{ pt.pokemons.1 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p3">
-                    <img src="{{ pt.pokemons.2.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 50px 0 0 500px" data-full-pokemon="{{ pt.pokemons.2 }}"
+                    <img src="
+
+                            {% if pt.pokemons.2.sprite_front %}{{ pt.pokemons.2.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
+                         class="img-fluid pokemon_img" alt=""
+                         style="
+                                 {% if not pt.pokemons.2.sprite_front %} width:70px; top: 20%; left: 32%; filter: grayscale(100%) {% else %} top: 13%; left: 27%  {% endif %}"
+                         data-full-pokemon="{{ pt.pokemons.2 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p4">
-                    <img src="{{ pt.pokemons.3.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 300px 0 0 650px" data-full-pokemon="{{ pt.pokemons.3 }}"
+                    <img src="
+
+                            {% if pt.pokemons.3.sprite_front %}{{ pt.pokemons.3.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
+                         class="img-fluid pokemon_img" alt=""
+                         style="
+                                 {% if not pt.pokemons.3.sprite_front %} width:70px; top: 47%; left: 39%; filter: grayscale(100%) {% else %} top: 38%; left: 37%  {% endif %}
+
+                                 " data-full-pokemon="{{ pt.pokemons.3 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p5">
-                    <img src="{{ pt.pokemons.4.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 550px 0 0 200px" data-full-pokemon="{{ pt.pokemons.4 }}"
+                    <img src="
+
+                            {% if pt.pokemons.4.sprite_front %}{{ pt.pokemons.4.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
+                         class="img-fluid pokemon_img" alt=""
+                         style="
+                                 {% if not pt.pokemons.4.sprite_front %} width:70px; top: 75%; left: 14%; filter: grayscale(100%) {% else %} top: 70%; left: 10%  {% endif %}
+                                 " data-full-pokemon="{{ pt.pokemons.4 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
                 <div class="p6">
-                    <img src="{{ pt.pokemons.5.sprite_front }}" class="img-fluid pokemon_img" alt=""
-                         style="margin: 550px 0 0 500px" data-full-pokemon="{{ pt.pokemons.5 }}"
+                    <img src="
+
+                            {% if pt.pokemons.5.sprite_front %}{{ pt.pokemons.5.sprite_front }}{% else %}{% static 'img/Poké_Ball_icon.svg.png' %}{% endif %}"
+                         class="img-fluid pokemon_img" alt=""
+                         style="{% if not pt.pokemons.5.sprite_front %} width:70px; top: 75%; left: 32%; filter: grayscale(100%) {% else %} top: 70%; left: 27%;  {% endif %}"
+                         data-full-pokemon="{{ pt.pokemons.5 }}"
                          data-current-team="{{ pt.team }}">
                 </div>
             </div>
         {% endfor %}
-
-        <div class="right">
+        <div class="right" style="background-image: url('static/img/homepage/pokedex.png')">
             <div class="right-top">
                 <div class="buttons">
-                    <div class="btn-catalog">
-                        <a href="catalog/type">
-                            Type
-                        </a>
-                    </div>
-                    <div class="btn-catalog">
-                        <a href="catalog/pokedex">
-                            Pokedex
-                        </a>
-                    </div>
-                    <div class="btn-catalog">
-                        <a href="catalog/egg-group">
-                            Egg group
-                        </a>
-                    </div>
-                    <div class="btn-catalog">
-                        <a href="catalog/gender">
-                            Gender
-                        </a>
-                    </div>
-                    <div class="btn-catalog">
-                        <a href="catalog/habitat">
-                            Habitat
-                        </a>
-                    </div>
-                    <div class="btn-catalog">
-                        <a href="catalog/growth-rate">
-                            Growth Rate
-                        </a>
-                    </div>
-                    <div class="btn-catalog">
-                        <button id="openPopupBtnTeam">
-                            Create Team
-                        </button>
-                    </div>
+                    <a href="catalog/type" class="btn-catalog">
+                        Type
+                    </a>
+                    <a href="catalog/pokedex" class="btn-catalog">
+                        Pokedex
+                    </a>
+                    <a href="catalog/egg-group" class="btn-catalog">
+                        Egg group
+                    </a>
+                    <a href="catalog/gender" class="btn-catalog">
+                        Gender
+                    </a>
+                    <a href="catalog/habitat" class="btn-catalog">
+                        Habitat
+                    </a>
+                    <a href="catalog/growth-rate" class="btn-catalog">
+                        Growth Rate
+                    </a>
+                    <button id="openPopupBtnTeam" class="btn-catalog">
+                        Create Team
+                    </button>
                 </div>
             </div>
             <div class="right-bottom">
-                <button class="arrow arrow-left"><=</button>
+                <button class="arrow arrow-left"><i class="fa-solid fa-arrow-left"></i></button>
 
-                <form id="popupFormTeam" action="{% url 'add_team' %}" method="post">
-                    <label for="name">Name:</label>
-                    <input type="text" id="nameTeam" name="name" value="" required>
-                    <button type="submit">Submit</button>
-                </form>
-
-                <button class="delete-team">Poubemme</button>
-
-                <button class="arrow arrow-right">=></button>
+                <button data-team-id="0" id="delete-team"><i class="fa-solid fa-trash"></i></button>
+                <button class="arrow arrow-right"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
     </div>
