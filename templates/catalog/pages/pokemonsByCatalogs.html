@@ -13,21 +13,25 @@
 
 {% block body %}
         <a href="/">
-            <img src="{% static 'img/Poké_Ball_icon.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px; height: 150px; width: auto">
-            <img src="{% static catalog.theme.icon %}"  alt="Catalog des types" style="position: absolute; right: 10px;height: 150px; width: auto">
+            <img src="{% static 'img/Poké_Ball_icon.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px; height: 12%; width: auto">
+        </a>
+        <a href="{% url 'see_all_catalog' catalog_type=catalog.catalog_type %}">
+            <img src="{% static catalog.theme.icon %}"  alt="Catalog des types" style="position: absolute; right: 10px;height: 12%; width: auto">
         </a>
         <div class="spam-card-container">
             {% for pokemon in catalog.pokemons %}
-                <div class="spam-card" style="background-color: #ffffff;">
+                <div class="pokemon_img spam-card" style="background-color: #ffffff;" data-full-pokemon="{{ pokemon }}" data-full-team="{{ teams }}">
                     <p>{{ pokemon.name }}</p>
-                    <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid pokemon_img"
-                         data-full-pokemon="{{ pokemon }}" data-full-team="{{ teams }}">
+                    <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid">
                 </div>
             {% endfor %}
         </div>
         {% if page_info.display_button %}
             <a href="{% url 'see_all_pokemon_by_catalog' catalog_type=catalog.catalog_type catalog_name=catalog.name %}?max={{ page_info.max_pokemon }}">
                 Charger plus</a>
+        {% endif %}
+        {% if page_info.display_search_form %}
+        {% include 'forms/searchPokemon.html' %}
         {% endif %}
     {% endblock %}
 

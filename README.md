@@ -62,3 +62,6 @@ ce package rassemble les fonctionnalité de gestion des équipes de pokemons.
 - Ajouter une gestion des utilisateur
   - Nouvelle table en base + liaison des équipes à un utilisateur
   - Ajouter une fonctionnalité de login
+
+
+- Ajouter un script de remplissage automatique de la base de donnée pour gagner en performance sur les recherche
