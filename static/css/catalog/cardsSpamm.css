@@ -5,19 +5,18 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background: #ef6f6f;
 }
 
 .spam-card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 20px;
+    padding: 4% 10%;
     gap: 20px;
 }
 
 .spam-card {
-    flex: 1 0 200px;
+    flex: 0 0 200px;
     margin: 10px;
     padding: 20px;
     border-radius: 2rem;

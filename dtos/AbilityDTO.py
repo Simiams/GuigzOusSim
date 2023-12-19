@@ -1,6 +1,6 @@
 class AbilityDTO:
     def __init__(self, a):
-        self.name = a["ability"]["name"]
+        self.name = a["ability"]["name"].capitalize()
         self.url = a["ability"]["url"]
 
     def to_json(self):
