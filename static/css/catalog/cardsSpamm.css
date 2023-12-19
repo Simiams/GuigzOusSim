@@ -17,6 +17,7 @@ body {
 
 .spam-card {
     flex: 0 0 200px;
+    width: 15rem;
     margin: 10px;
     padding: 20px;
     border-radius: 2rem;
@@ -24,6 +25,10 @@ body {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     background: #fff;
     color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .spam-card:hover {
