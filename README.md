@@ -15,7 +15,7 @@ Pour des soucis de simplicsité, on stocke en base uniquement le information sui
 ### Pokemon
 - id
 - id (coté PokeApi)
-L'interet d'un table ici est simplement de l'anticipation sur les futures fonctionnalités.
+L'interet d'un table ici est simplement de l'anticipation sur les futures fonctionnalités. (HP dans une fonctionnalité de duel...)
 ### Teams
 - id
 - name

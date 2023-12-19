@@ -5,11 +5,15 @@
 
 <div class="popup" id="popupTeam">
     <div class="popup-content">
-        <span class="close" id="closePopupBtnTeam">&times;</span>
-        <form id="popupFormTeam" action="{% url 'add_team' %}" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="nameTeam" name="name" value="" required>
-            <button type="submit">Submit</button>
-        </form>
+        <div class="modal-header">
+            <span id="closePopupBtnTeam"><i class="fa-solid fa-x"></i></span>
+        </div>
+        <div class="modal-body">
+            <form id="popupFormTeam" action="{% url 'add_team' %}" method="post">
+                <label for="name">Choose a name for a new team</label>
+                <input type="text" id="nameTeam" name="name" value="" required/>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 </div>

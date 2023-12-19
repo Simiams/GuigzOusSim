@@ -5,10 +5,7 @@
 .left, .right {
     width: 50%;
     height: 100vh;
-}
-
-.left {
-    /*border: 20px solid black;*/
+    box-shadow: inset 0 0 50px rgb(0, 0, 0);
 }
 
 .left-bg {
@@ -37,7 +34,6 @@
 }
 
 .right {
-    /*border: 20px solid black;*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -63,13 +59,12 @@
 
 .btn-catalog {
     box-shadow: -1px 0 5px #eae6ba, 1px 0 5px #eae6ba, 0 -1px 5px #eae6ba, 0 1px 5px #eae6ba;
-
+    border: none;
     font-size: 1.3rem;
     vertical-align: middle;
     line-height: 50px;
     text-align: center;
     width: 100%;
-    height: 50px;
     text-decoration: none;
     border-radius: 40px;
     margin-top: 10%;
@@ -82,11 +77,9 @@
     text-decoration: none;
     background-color: #eae6ba;
     color: #629699;
-}
-
-.btn-catalog:hover {
     cursor: pointer;
 }
+
 
 .right-bottom {
     display: flex;
@@ -97,6 +90,7 @@
     text-align: center;
     font-size: 100%;
     border-radius: 100%;
+    border: none;
     background-color: #629699;
     padding: 20px;
     transition: background-color 0.5s ease;
@@ -120,6 +114,7 @@
 
 #delete-team {
     color: #eae6ba;
+    border: none;
     background-color: #629699;
     transition: background-color 0.5s ease;
     margin-bottom: 10px;
@@ -139,3 +134,28 @@
 #delete-team:hover i {
     color: #629699;
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgb(98, 150, 153);
+    display: none;
+    z-index: 1;
+    animation: fadeInOut 1s ease-in-out;
+    width: 50%;
+    height: 100vh;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+
+
+/*CARDS*/

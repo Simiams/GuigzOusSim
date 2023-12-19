@@ -1,76 +1,296 @@
-#popup {
-    display: none;
-}
-
-.popup-close {
-    cursor: pointer;
-}
-
-.container {
-    width: 400px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-}
-
-#card {
-    position: relative;
-    width: 100%;
-    padding: 30px 20px;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-}
-
-#card img {
-    display: block;
-    width: 180px;
-    max-height: 200px;
-    position: relative;
-    margin: 20px auto;
-}
-
-.hp {
-    width: 80px;
-    background-color: #ffffff;
-    text-align: center;
-    padding: 8px 0;
-    border-radius: 30px;
-    margin-left: auto;
+h1, h2, h3, h4, h5 {
+    margin: 0;
     font-weight: 400;
 }
 
-.poke-name {
+.card {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: none;
+    width: 400px;
+    padding: 1em;
+    border-radius: 15px;
+    background: #ddd;
+    text-align: left;
+    position: absolute;
+    box-shadow: 0px 5px 20px -10px #111111;
+    transition: 0.4s;
+}
+
+.card__caption {
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 1em;
+    position: relative;
+    border-radius: 0 0 3px 3px;
+}
+
+#image{
+    width: 250px;
+}
+
+.card__image-container {
+    background-color: rgba(0, 0, 0, 0.7);
     text-align: center;
-    font-weight: 600;
+    padding: 1em 1em 0;
+    border-radius: 3px 3px 0 0;
 }
 
-.types {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0 40px 0;
-}
-
-.hp span,
-.types span {
-    font-size: 12px;
-    letter-spacing: 0.4px;
-    font-weight: 600;
-}
-
-.types span {
-    padding: 5px 20px;
-    border-radius: 20px;
+.card__type {
+    position: absolute;
+    top: 0;
+    right: 1em;
+    transform: translateY(-50%);
     color: #ffffff;
+    text-transform: uppercase;
+    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+    letter-spacing: 0.1em;
+    padding: 0.25em;
+    line-height: 1;
+    border-radius: 2px;
+    background: #bbbbbb;
 }
 
-.stats {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.card__label {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.card__name {
+    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
     text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
-.stats p {
-    color: #404060;
+.card__stats {
+    margin: 0;
+    width: 100%;
 }
+
+.card__stats th {
+    font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+    text-align: right;
+    font-weight: 300;
+}
+
+.card__stats th, .card__stats td {
+    width: 50%;
+    padding: 0.25em 0.5em 0;
+}
+
+#abilities p {
+    margin: 0;
+}
+
+.card--normal {
+  background: linear-gradient(110deg, #fdbb2d 0%, #3a1c71 100%);
+  box-shadow: 0px 5px 20px -10px #3a1c71;
+}
+
+.card--normal .card__type {
+  background-color: #c08a53;
+}
+
+.card--water {
+  background: linear-gradient(120deg, #1cb5e0 0%, #000851 100%);
+  box-shadow: 0px 5px 20px -10px #000851;
+}
+
+.card--water .card__type {
+  background-color: #1cb5e0;
+}
+
+.card--electric {
+  background: linear-gradient(90deg, rgba(255, 222, 0, 1) 34%, rgba(232, 255, 153, 1) 83%);
+}
+
+.card--electric .card__type {
+  background-color: #000;
+}
+
+.card--fire {
+  background: linear-gradient(0deg, rgba(199, 24, 0, 1) 10%, rgba(252, 194, 69, 1) 100%);
+}
+
+.card--fire .card__type {
+  background-color: rgba(199, 24, 0, 1);
+}
+
+.card--psychic {
+  background: linear-gradient(140deg, rgba(255, 167, 249, 1) 0%, rgba(255, 44, 195, 1) 39%, rgba(255, 227, 167, 1) 100%);
+}
+
+.card--psychic .card__type {
+  background: #ff2cc3;
+}
+
+.card--dark {
+  background: linear-gradient(20deg, rgba(25, 25, 25, 1) 0%, rgba(16, 11, 50, 1) 33%, rgba(92, 2, 73, 1) 100%);
+}
+
+.card--dark .card__type {
+  background: #5c0249;
+}
+
+.card--grass {
+  background: linear-gradient(140deg, rgba(196, 218, 61, 1) 0%, rgba(110, 127, 14, 1) 69%, rgba(39, 80, 9, 1) 100%);
+}
+
+.card--grass .card__type {
+  background: #6e7f0e;
+}
+
+.card--ice {
+  background: linear-gradient(230deg, rgba(202, 234, 246, 1) 0%, rgba(160, 234, 241, 1) 46%, rgba(111, 184, 235, 1) 100%);
+}
+
+.card--ice .card__type {
+  background: #6fb8eb;
+}
+
+.card--fairy {
+  background: linear-gradient(45deg, rgba(255, 230, 240, 1) 0%, rgba(255, 197, 224, 1) 34%, rgba(255, 166, 185, 1) 71%, rgba(255, 138, 149, 1) 100%);
+}
+
+.card--fairy .card__type {
+  background: #ff8a95;
+}
+
+.card--poison {
+  background: linear-gradient(45deg, rgba(255, 230, 240, 1) 0%, rgb(249, 197, 255) 34%, rgb(225, 166, 255) 71%, rgb(200, 138, 255) 100%);
+}
+
+.card--poison .card__type {
+  background: #c88aff;
+}
+
+.card--dragon {
+  background: linear-gradient(45deg, rgb(238, 230, 255) 0%, rgb(197, 203, 255) 34%, rgb(166, 218, 255) 71%, rgb(138, 255, 239) 100%);
+}
+
+.card--dragon .card__type {
+  background: #8af3ff;
+}
+
+.card--bug {
+  background: linear-gradient(45deg, rgb(254, 255, 230) 0%, rgb(242, 255, 197) 34%, rgb(242, 255, 166) 71%, rgb(222, 255, 138) 100%);
+}
+
+.card--bug .card__type {
+  background: #f3ff8a;
+}
+
+
+.card--ghost {
+  background: linear-gradient(45deg, rgb(186, 186, 187) 0%, rgb(242, 255, 197) 34%, rgb(242, 255, 166) 71%, rgb(222, 255, 138) 100%);
+}
+
+.card--ghost .card__type {
+  background: #f3ff8a;
+}
+
+.card--rock {
+  background: linear-gradient(45deg, rgb(183, 183, 183) 0%, rgb(141, 141, 141) 34%, rgb(96, 96, 96) 71%, rgb(72, 72, 72) 100%);
+}
+
+.card--rock .card__type {
+  background: #606060;
+}
+
+#container_team {
+    display: flex;
+    flex-direction: row;
+}
+
+.team-button {
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    margin: 1px;
+    padding: 0;
+}
+
+/*#popup {*/
+/*    display: none;*/
+/*}*/
+
+/*.popup-close {*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.container {*/
+/*    width: 400px;*/
+/*    position: absolute;*/
+/*    transform: translate(-50%, -50%);*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*}*/
+
+/*#card {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    padding: 30px 20px;*/
+/*    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*#card img {*/
+/*    display: block;*/
+/*    width: 180px;*/
+/*    max-height: 200px;*/
+/*    position: relative;*/
+/*    margin: 20px auto;*/
+/*}*/
+
+/*.hp {*/
+/*    width: 80px;*/
+/*    background-color: #ffffff;*/
+/*    text-align: center;*/
+/*    padding: 8px 0;*/
+/*    border-radius: 30px;*/
+/*    margin-left: auto;*/
+/*    font-weight: 400;*/
+/*}*/
+
+/*.poke-name {*/
+/*    text-align: center;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.types {*/
+/*    display: flex;*/
+/*    justify-content: space-around;*/
+/*    margin: 20px 0 40px 0;*/
+/*}*/
+
+/*.hp span,*/
+/*.types span {*/
+/*    font-size: 12px;*/
+/*    letter-spacing: 0.4px;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.types span {*/
+/*    padding: 5px 20px;*/
+/*    border-radius: 20px;*/
+/*    color: #ffffff;*/
+/*}*/
+
+/*.stats {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.stats p {*/
+/*    color: #404060;*/
+/*}*/
+
+
+

@@ -6,10 +6,11 @@
 {% endblock %}
 
 {% block body %}
-<div class="card-container">
+<div class="card-container" style="background-color: rgba(246,240,240,0.53);">
+{{ catalog }}
 {% for c in catalog %}
-    <div class="card" style="background-color: rgba(246,240,240,0.53);">
-        <a href="{% url 'see_all_pokemon_by_catalog' catalog=catalog_name id=c.name %}">
+    <div class="card" style="background-color: {{ c.theme.background_color }}">
+        <a href="{% url 'see_all_pokemon_by_catalog' catalog_type=c.catalog_type catalog_name=c.name %}">
             <img src="{% static c.theme.icon %}" alt="{{ "icon" }}">
             {{ c.name }}
         </a>
