@@ -8,9 +8,8 @@
 
 {% block body %}
     <div class="spam-card-container" style="background-color: rgba(246,240,240,0.53);">
-        {{ catalog }}
         {% for c in catalog %}
-            <div class="spam-card" style="background-color: {{ c.theme.background_color }}">
+            <div class="spam-card" style="background-color: {{ c.theme.color }}">
                 <a href="{% url 'see_all_pokemon_by_catalog' catalog_type=c.catalog_type catalog_name=c.name %}">
                     <img src="{% static c.theme.icon %}" alt="{{ "icon" }}">
                     {{ c.name }}
