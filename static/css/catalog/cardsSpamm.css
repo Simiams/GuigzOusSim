@@ -6,6 +6,19 @@ body {
     line-height: 1.5;
     color: #333;
 }
+.menu-icon-pkmn-type{
+    position: fixed;
+    right: 10px;
+    height: 10rem;
+    width: auto;
+}
+
+.menu-icon-pkmn-ball{
+    position: fixed;
+    left: 10px;
+    height: 10rem;
+    width: auto;
+}
 
 .spam-card-container {
     display: flex;
