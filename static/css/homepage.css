@@ -49,28 +49,27 @@
 .buttons {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 1%;
     width: 35%;
+    height: 75vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .btn-catalog {
     box-shadow: -1px 0 5px #eae6ba, 1px 0 5px #eae6ba, 0 -1px 5px #eae6ba, 0 1px 5px #eae6ba;
     border: none;
     font-size: 1.3rem;
-    vertical-align: middle;
     line-height: 50px;
+    height: 55px;
     text-align: center;
-    width: 100%;
     text-decoration: none;
     border-radius: 40px;
-    margin-top: 10%;
     background-color: #629699;
     color: #eae6ba;
     transition: background-color 0.5s ease;
+    margin-top: auto;
 }
 
 .btn-catalog:hover {

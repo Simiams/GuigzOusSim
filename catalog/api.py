@@ -95,3 +95,20 @@ async def get_pokemon_by_name(name):
         print("[INFO][GetPokemonByName] " + url)
         res = await client.get(url)
         return res.json()
+
+
+def get_translation(pokemon_name):
+    import requests
+    url = os.getenv("GET_TRANSLATION")
+    payload = {
+        "text": pokemon_name,
+        "from": "fr",
+        "to": "en"
+    }
+    headers = {
+        "content-type": "application/x-www-form-urlencoded",
+        "X-RapidAPI-Key": os.getenv("RAPID_API_KEY"),
+        "X-RapidAPI-Host": "translate281.p.rapidapi.com"
+    }
+    response = requests.post(url, data=payload, headers=headers)
+    return response.json()["response"]

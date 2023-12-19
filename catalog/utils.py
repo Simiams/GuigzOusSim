@@ -30,10 +30,10 @@ def get_theme_by_catalog(catalog, catalog_type):
     for key, value in THEME_BY_CATALOG.items():
         if key == catalog_type:
             for c in catalog:
-                c.theme = THEME_BY_CATALOG[key].get(c.name, None)
-                print(c.theme)
-                c.theme["color"] = mitigate_color(THEME_BY_CATALOG[key].get(c.name)["color"], 50)
-                if c.theme:
+                if THEME_BY_CATALOG[key].get(c.name, None):
+                    print(THEME_BY_CATALOG[key])
+                    c.theme = THEME_BY_CATALOG[key].get(c.name, {}).copy()
+                    c.theme["color"] = mitigate_color(THEME_BY_CATALOG[key].get(c.name, {})["color"], 50)
                     new_catalog.append(c)
     return new_catalog
 
@@ -45,8 +45,6 @@ def create_catalog(catalog_type, catalog_name, pokemons):
 
 
 def mitigate_color(code_hex, correction):
-    if not (code_hex.startswith("#") and len(code_hex) == 7):
-        raise ValueError("Le code hexadécimal doit être au format '#RRGGBB'.")
     r = int(code_hex[1:3], 16)
     g = int(code_hex[3:5], 16)
     b = int(code_hex[5:7], 16)
