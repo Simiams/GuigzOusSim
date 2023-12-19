@@ -7,7 +7,7 @@ from dtos.StatDTO import StatDTO
 class PokemonDTO:
     def __init__(self, p):
         self.id = p["id"]
-        self.name = p["name"]
+        self.name = p["name"].capitalize()
         self.sprite_front = p["sprites"]["front_default"]
         self.sprite_back = p["sprites"]["back_default"]
         self.type = p["types"]
@@ -30,3 +30,4 @@ class PokemonDTO:
             "stats": [s.to_json() for s in self.stats],
             "abilities": [a.to_json() for a in self.abilities]
         })
+

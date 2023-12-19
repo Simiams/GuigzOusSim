@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/catalog/cardsSpamm.css' %}">
+{% endblock %}
+
+
+{% block body %}
+    <a href="/">
+        <img src="{% static 'img/R.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px;">
+    </a>
+    <div class="card-container">
+        {% for pokemon in pokemons %}
+            <div class="card" style="background-color: rgba(246,240,240,0.53);">
+                <p>{{ pokemon.name }}</p>
+                <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid pokemon_img"
+                     data-full-pokemon="{{ pokemon }}" data-full-team="{{ teams }}">
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if page_info.display_button %}
+        <a href="{% url 'see_all_pokemon_by_catalog' catalog=page_info.catalog_name id=page_info.id %}
+        ?max={{ page_info.max_pokemon }}">Charger plus</a>
+    {% endif %}
+{% endblock %}
+
+{% block include %}
+    {% include "modals/card.html" %}
+    {% include "modals/createTeam.html" %}
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="{% static 'js/api.js' %}"></script>
+{% endblock %}
