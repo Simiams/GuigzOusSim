@@ -13,16 +13,16 @@
 
 {% block body %}
         <a href="/">
-            <img src="{% static 'img/Poké_Ball_icon.png' %}" alt="Home" style="position: absolute; top: 10px; left: 10px; height: 12%; width: auto">
+            <img src="{% static 'img/pokeball-notre-icon.png' %}" alt="Home" class="menu-icon-pkmn-ball">
         </a>
         <a href="{% url 'see_all_catalog' catalog_type=catalog.catalog_type %}">
-            <img src="{% static catalog.theme.icon %}"  alt="Catalog des types" style="position: absolute; right: 10px;height: 12%; width: auto">
+            <img src="{% static catalog.theme.icon %}"  alt="Catalog des types" class="menu-icon-pkmn-type">
         </a>
         <div class="spam-card-container">
             {% for pokemon in catalog.pokemons %}
                 <div class="pokemon_img spam-card" style="background-color: #ffffff;" data-full-pokemon="{{ pokemon }}" data-full-team="{{ teams }}">
+                    <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid" style="width: 15rem; height: auto">
                     <p>{{ pokemon.name }}</p>
-                    <img src="{{ pokemon.sprite_front }}" alt="Image" class="img-fluid">
                 </div>
             {% endfor %}
         </div>
