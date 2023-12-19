@@ -1,0 +1,9 @@
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/forms/searchPokemon.css' %}">
+{% endblock %}
+
+<form class="search-form" method="get" action="{% url 'search_pokemon' %}">
+    <input class="btn-catalog" type="text" name="q" placeholder="Rechercher">
+    <input class="btn-catalog" type="submit" value="Rechercher">
+</form>

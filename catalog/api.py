@@ -1,4 +1,5 @@
 import asyncio
+import os
 
 import httpx
 import requests
@@ -69,3 +70,28 @@ def get_pokemon_in_cache(catalog_type, catalog_name, pokemon_id):
             for p in cat.pokemons:
                 if int(p.id) == int(pokemon_id):
                     return p
+
+
+def get_all_pokemons():
+    print("[INFO][GetAllPokemons] " + os.getenv("GET_ALL_POKEMONS"))
+    res = requests.get(os.getenv("GET_ALL_POKEMONS"))
+    return res.json()['results'] if res.status_code == 200 else []
+
+
+async def get_pokemon_by_names(names):
+    pokemons = []
+    async_tasks = []
+    for name in names:
+        async_tasks.append(get_pokemon_by_name(name))
+    pokemon_responses = await asyncio.gather(*async_tasks)
+    for response in pokemon_responses:
+        pokemons.append(PokemonDTO(response))
+    return pokemons
+
+
+async def get_pokemon_by_name(name):
+    url = os.getenv("GET_POKEMON") + name.lower()
+    async with httpx.AsyncClient() as client:
+        print("[INFO][GetPokemonByName] " + url)
+        res = await client.get(url)
+        return res.json()

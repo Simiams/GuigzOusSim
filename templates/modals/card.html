@@ -3,10 +3,8 @@
     <link rel="stylesheet" href="{% static 'css/modals/card.css' %}">
 {% endblock %}
 
-
-
 <figure id="popup" class="card card--normal">
-    <span class="popup-close btn-close"></span>
+    <span class="popup-close"><i class="fa-solid fa-x"></i></span>
 
     <div class="card__image-container">
         <img id="image" alt="Pokemon Image"
@@ -60,43 +58,6 @@
     <form class="" id="container_team" action="{% url 'management_pokemon' %}" method="post">
     </form>
 </figure>
-
-
-{#<div id="popup" class="container">#}
-{#    <span class="popup-close btn-close"></span>#}
-{##}
-{#    <div id="card">#}
-{#        <p class="hp" id="hp">#}
-{#            <span>HP</span>#}
-{#            10#}
-{#        </p>#}
-{#        <img src="..." id="image">#}
-{#        <h2 class="poke-name" id="name">pokeName</h2>#}
-{#        <div class="types">#}
-{##}
-{#        </div>#}
-{##}
-{#        <div id="abilities">#}
-{#        </div>#}
-{##}
-{#        <div class="stats">#}
-{#            <div>#}
-{#                <h3 id="attack">12</h3>#}
-{#                <p>Attack</p>#}
-{#            </div>#}
-{#            <div>#}
-{#                <h3 id="defense">20</h3>#}
-{#                <p>Defense</p>#}
-{#            </div>#}
-{#            <div>#}
-{#                <h3 id="speed">23</h3>#}
-{#                <p>Speed</p>#}
-{#            </div>#}
-{#        </div>#}
-{#        <form class="" id="container_team" action="{% url 'management_pokemon' %}" method="post">#}
-{#        </form>#}
-{#    </div>#}
-{#</div>#}
 
 {% block script %}
     <script src="{% static 'js/api.js' %}"></script>
