@@ -9,31 +9,31 @@ URL_BY_CATALOG = {
 
 THEME_BY_CATALOG = {
     "growth-rate": {
-        "slow": {"icon": "img/growthRate/test", "color": "#FF0000", "background-img": "img/growthRate/bg"},
-        "medium": {"icon": "img/growthRate/test", "color": "#FF0000", "background-img": "img/growthRate/bg"},
-        "fast": {"icon": "img/growthRate/test", "color": "#FF0000", "background-img": "img/growthRate/bg"},
-        "medium-slow": {"icon": "img/growthRate/test", "color": "#FF0000", "background-img": "img/growthRate/bg"},
-        "slow-then-very-fast": {"icon": "img/growthRate/test", "color": "#FF0000",
+        "slow": {"icon": "img/growthRate/slow.png", "color": "#FF0000", "background-img": "img/growthRate/bg"},
+        "medium": {"icon": "img/growthRate/medium.png", "color": "#FF0000", "background-img": "img/growthRate/bg"},
+        "fast": {"icon": "img/growthRate/fast.png", "color": "#FF0000", "background-img": "img/growthRate/bg"},
+        "medium-slow": {"icon": "img/growthRate/medium-slow.png", "color": "#FF0000", "background-img": "img/growthRate/bg"},
+        "slow-then-very-fast": {"icon": "img/growthRate/slow-then-very-fast.png", "color": "#FF0000",
                                 "background-img": "img/growthRate/bg"},
-        "fast-then-very-slow": {"icon": "img/growthRate/test", "color": "#FF0000",
+        "fast-then-very-slow": {"icon": "img/growthRate/fast-then-very-slow.png", "color": "#FF0000",
                                 "background-img": "img/growthRate/bg"}
     },
     "habitat": {
-        "cave": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "forest": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "cave": {"icon": "img/habitat/cave.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "forest": {"icon": "img/habitat/forest.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
 
-        "grassland": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "mountain": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "rare": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "rough-terrain": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "sea": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "urban": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"},
-        "waters-edge": {"icon": "img/habitat/test", "color": "#FF0000", "background-img": "img/habitat/bg"}
+        "grassland": {"icon": "img/habitat/grassland.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "mountain": {"icon": "img/habitat/mountain.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "rare": {"icon": "img/habitat/rare.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "rough-terrain": {"icon": "img/habitat/rough-terrain.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "sea": {"icon": "img/habitat/sea.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "urban": {"icon": "img/habitat/urban.png", "color": "#FF0000", "background-img": "img/habitat/bg"},
+        "waters-edge": {"icon": "img/habitat/waters-edge.png", "color": "#FF0000", "background-img": "img/habitat/bg"}
     },
     "gender": {
-        "female": {'icon': "img/gender/test", "color": "#FF000", "background-img": "img/gender/bg"},
-        "male": {'icon': "img/gender/test", "color": "#FF000", "background-img": "img/gender/bg"},
-        "genderless": {'icon': "img/gender/test", "color": "#FF000", "background-img": "img/gender/bg"},
+        "female": {'icon': "img/gender/female.png", "color": "#FF000", "background-img": "img/gender/bg"},
+        "male": {'icon': "img/gender/male.png", "color": "#FF000", "background-img": "img/gender/bg"},
+        "genderless": {'icon': "img/gender/genderless.png", "color": "#FF000", "background-img": "img/gender/bg"},
     },
     "egg-group": {
         "monster": {'icon': "img/eggGroup/oeuf_monster.png", "color": "#FF000", "background-img": "img/eggGroup/bg"},
