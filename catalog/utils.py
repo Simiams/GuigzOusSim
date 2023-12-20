@@ -1,4 +1,5 @@
 import os
+from random import random
 
 from catalog.constant import URL_BY_CATALOG, THEME_BY_CATALOG
 from dtos.CatalogDTO import CatalogDTO
@@ -50,3 +51,4 @@ def mitigate_color(code_hex, correction):
     b = max(0, min(255, b + correction))
     nouveau_code_hex = "#{:02X}{:02X}{:02X}".format(int(r), int(g), int(b))
     return nouveau_code_hex
+

@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
-body {
+body{
+    background-color: #f2e9e9;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
 }
+
 .menu-icon-pkmn-type{
     position: fixed;
     right: 10px;
@@ -36,12 +35,17 @@ body {
     border-radius: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    background: #fff;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-size: 1.5rem;
+    background-color: #ffffff
+}
+
+.spam-card img {
+    padding: 3.5%;
 }
 
 .spam-card:hover {
@@ -49,13 +53,18 @@ body {
     transform: scale(1.05);
 }
 
-@media screen and (max-width: 600px) {
-    .spam-card-container {
-        flex-direction: column;
-    }
+.form-search-pokemon {
+    margin: 0 auto 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.form-search-pokemon form{
+    margin-top: 0;
+}
 
-    .spam-card {
-        flex: 1 0 auto;
-        margin: 10px 0;
-    }
+.see-more {
+    text-decoration: none;
+    font-size: 1.4rem;
 }
