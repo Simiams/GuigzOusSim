@@ -6,6 +6,8 @@ from dtos.CatalogDTO import CatalogDTO
 
 
 def get_url_by_catalog_name(catalog_type):
+    print(catalog_type.replace("-", "_"))
+    print(URL_BY_CATALOG.get(catalog_type, None))
     return os.getenv(URL_BY_CATALOG.get(catalog_type, None))
 
 
@@ -14,7 +16,7 @@ def get_pokemons_urls_by_catalog_name(catalog_name, res):
         return [r["pokemon"]["url"] for r in res.json()['pokemon']]
     if catalog_name == "pokedex":
         return [r["pokemon_species"]["url"] for r in res.json()['pokemon_entries']]
-    if catalog_name == "egg-group" or catalog_name == "habitat" or catalog_name == "growth-rate":
+    if catalog_name == "egg-group" or catalog_name == "pokemon-habitat" or catalog_name == "growth-rate":
         return [r["url"] for r in res.json()['pokemon_species']]
     if catalog_name == "gender":
         return [r["pokemon_species"]["url"] for r in res.json()['pokemon_species_details']]
