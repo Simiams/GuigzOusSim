@@ -6,8 +6,6 @@ from dtos.CatalogDTO import CatalogDTO
 
 
 def get_url_by_catalog_name(catalog_type):
-    print(catalog_type.replace("-", "_"))
-    print(URL_BY_CATALOG.get(catalog_type, None))
     return os.getenv(URL_BY_CATALOG.get(catalog_type, None))
 
 
