@@ -3,37 +3,39 @@
 ### VENV
 
 - python3 -m venv venv (créer un environnement virtuel)
-- source venv/bin/activate (active l'environnement virtuel)
+- source venv/bin/activate (active l’environnement virtuel)
 
 ### REQUIREMENTS
 
 - pip freeze > requirements.txt (créer un fichier requirements.txt)
 - pip install -r requirements.txt (installe les dépendances necessaires)
 
-# FONCTIONALITÉS
+# FONCTIONNALITÉS
 
 ## Catalogue
 
-Le catalogue permet de cherche tout les pokemons appartenant a un même ctalogues. On peux accéder au different catalog
-depuis la homepage via les bouttons sur le panel de droite qui liste les type de catalogues (pokedex, type d'oeuf,
-genre, type, etc...).En selectionnant un type de catalogue, on accède à une page listant tout les catalogues appartenant
-à ce type (feu, eau, etc...). C'est en cliquant sur un cataloguespeifique qu'on peux voir apparaitre la liste des
-pokemons (tout les pokemon de type feu, tout les pokemon du pokedex kanto, etc...).
+Le catalogue permet de chercher tous les Pokémon appartenant à un même catalogue. On peut accéder aux différents
+catalogues depuis la homepage via les boutons sur le panneau de droite qui liste les types de catalogues
+(Pokedex, type d’œuf, genre, type, etc.). En sélectionnant un type de catalogue,
+on accède à une page listant tous les catalogues appartenant à ce type (feu, eau, etc.).
+C’est en cliquant sur des catalogues spécifiques qu'on peut voir apparaître la liste des Pokémon
+(tous les Pokémon de type feu, tous les Pokémon du pokedex kanto, etc.).
 
-Les pokemons sont afficher par tranche de 25 pour eviter de surcharger la page. En cliquant sut le boutton "voir plus",
-25 de plus se rajoutent. Le deuxieme acces à a page est plus rapidegrace au cache.
+Les Pokémon sont affichés par tranche de 25 pour éviter de surcharger la page. En cliquant sur le bouton "voir plus :",
+25 de plus se rajoutent. Le deuxième accès à la page est plus rapide grace au cache.
 
-Cliquer sur un pokemon affiche sa carte, on peut alors choisir de l'ajouter a une équipeau préalable créer via la home
-page. On y reviendra...
+Cliquer sur un Pokémon affiche sa carte, on peut choisir de l’ajouter à une équipe au préalable créé via la homepage.
+On reviendra là-dessus plus tard.
 
-## Equipes
+## Équipes
 
-La page déquipe ou la homepage permet de creer er supprimer une équipe, de voir lespokemon appartenant a une equipe et
+La page d’équipe ou la homepage permet de créer er supprimer une équipe, de voir les Pokémon appartenant à une équipe et
 de les supprimer.
 
-La homepage permet l'accés au differetn catalogue mais aussi a la focntionnalité de recherche par nom. Un traducteur
-francais y est integrés, vous pouvez donc entrer des nom de pokemon francais, une approximation est faite, vousverrez
-par ordre de pertinence les pokemons dont le nom correspond plus ou moins à votre requete.
+La homepage permet l’accès aux différents catalogues, mais aussi a la fonctionnalité de recherche par nom. Un traducteur
+français est intégré dans le traitement de la recherche, vous pouvez donc entrer des noms de Pokémon français, une
+approximation est faite, vous verrez par ordre de pertinence les Pokémon dont le nom correspond plus ou moins à votre
+requête.
 
 ---
 
@@ -41,10 +43,10 @@ par ordre de pertinence les pokemons dont le nom correspond plus ou moins à vot
 
 # BDD
 
-La bdd sert uniquement pour le stockage des pokemons et des équipes.
-Pour des soucis de simplicsité, on stocke en base uniquement le information suivante:
+La bdd sert uniquement pour le stockage des Pokémon et des équipes.
+Pour des soucis de simplicité, on stocke en base uniquement les informations suivantes :
 
-### Pokemon
+### Pokémon
 
 - id
 - id (coté PokeApi)
@@ -54,59 +56,58 @@ Pour des soucis de simplicsité, on stocke en base uniquement le information sui
 - id
 - name
 
-### PokemonTeams
+### PokémonTeams
 
 - id
-- pokemon_id
+- Pokémon_id
 - team_id
 
-La table pokemon n'es pas nécessaire pour l'actuelle fonctioonnement de l'application mais par anticipation d'une
-fonctionnalité de duel et de gestion des hp nous avons creer une table dédiée.
+La table Pokémon n’est pas nécessaire pour l’actuel fonctionnement de l’application, mais par anticipation d’une
+fonctionnalité de duel et de gestion des hp, nous avons créé une table dédiée.
 
 ---
 
 ## BACKEND
 
-le Back est syndé en 2 package principale:
+Le Back est scindé en 2 parties principales :
 
 - catalog
 - teams
-
-Le catalog gére l'affichage des pokemons par catalogue ainsi que celui des type de cataolg
-Le package teams gére la gestion des équipes de pokemons et notre homepage
+  Le catalog gère l’affichage des Pokémon par catalogue ainsi que celui du type de catalog
+  Le package teams gère la gestion des équipes de Pokémon et notre homepage
 
 ### POKEAPI
 
-Pour utilisé un maximum l'apipokeapi, on ne stocke aucun pokemon en base de donnée, on les récupère directement via les
-endponts disponnible, une amélioration future serarais de réalisé un script de remplissage de la base de donnée avant de
-lancer le serveurdjango
+Pour utiliser un maximum l’api pokeapi, on ne stocke aucun Pokémon en base de données, on les récupère directement via
+les endpoints disponibles, une amélioration future serait de réaliser un script de remplissage de la base de données
+avant de lancer le serveur Django.
 
-Pour la recherche par nom de chaque pokemon, on utilise de l'asynchronisme pour gagner en performance. De plus les
-pokemons déjà requetés sont stocker dans une variable locale, on evite ainsi de re-requeter l'api à chaque rechargement
-de la page.
+Pour la recherche par nom de chaque Pokémon, on utilise de l’asynchronisme pour gagner en performance. De plus, les
+Pokémon déjà chargés sont stockés dans une variable locale, on évite ainsi de re-requêter l’api à chaque rechargement de
+la page.
 
 ## FRONTEND
 
-Pour profiter de l'environnement de django, nous avons hoisis d'utiliser le systeme de template. L'inconvénient est que
-le html est lourd, et qu'on doit jouer avec les dispaly (none, block, etc...)
+Pour profiter de l’environnement de Django, nous avons choisi d’utiliser le système de template. L’inconvénient est que
+le html est lourd, et qu'on doit jouer avec les display (none, block, etc.)
 
 ## catalog
 
-Ce package regroupe les fonctionnalité de recherche par catégorie de pokeon (type, pokedex, type d'oeuf, genre, etc...)
+Ce package regroupe les fonctionnalités de recherche par catégorie de Pokémon (type, pokedex, type d’œuf, genre, etc.)
 
-
-# Ameliorations futures
+# Améliorations futures
 
 - Ajouter une fonctionnalité de duel
-    - Stocker en base les PV des pokemons
-    - Calcule des dégats en fonction des types et des attaques
-    - Systeme de level, chaque combat gagné incrementer le level du pokemon ainsi que ses stats
-    - Un pokemon mort est supprimer de l'équipe, il faut donc le rajouter ce qui reset ces stats
+- Stocker en base les PV des Pokémon
+- Calcule des dégâts en fonction des types et des attaques
+- Système de leveling, chaque combat gagné incrémente le level du Pokémon ainsi que ses stats
+- Un Pokémon mort est supprimé de l’équipe, il faut donc le rajouter ce qui reset ses stats
 
 
-- Ajouter une gestion des utilisateur
-    - Nouvelle table en base + liaison des équipes à un utilisateur
-    - Ajouter une fonctionnalité de login
+- Ajouter une gestion de l’utilisateur
+- Nouvelle table en base + liaison des équipes à un utilisateur
+- Ajouter une fonctionnalité de login
 
 
-- Ajouter un script de remplissage automatique de la base de donnée pour gagner en performance sur les recherche
+- Ajouter un script de remplissage automatique de la base de données pour gagner en performance sur les recherches
+  ¯¯¯¯¯
