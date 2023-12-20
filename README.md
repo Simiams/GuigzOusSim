@@ -71,45 +71,29 @@ le Back est syndé en 2 package principale:
 
 - catalog
 - teams
-  Le catalog gére l'affichage des pokemons par catalogue ainsi que celui des type de cataolg
-  Le package teams gére la gestion des équipes de pokemons et notre homepage
+
+Le catalog gére l'affichage des pokemons par catalogue ainsi que celui des type de cataolg
+Le package teams gére la gestion des équipes de pokemons et notre homepage
 
 ### POKEAPI
 
 Pour utilisé un maximum l'apipokeapi, on ne stocke aucun pokemon en base de donnée, on les récupère directement via les
-endponts disponnible, une amélioration future serarais 
+endponts disponnible, une amélioration future serarais de réalisé un script de remplissage de la base de donnée avant de
+lancer le serveurdjango
+
+Pour la recherche par nom de chaque pokemon, on utilise de l'asynchronisme pour gagner en performance. De plus les
+pokemons déjà requetés sont stocker dans une variable locale, on evite ainsi de re-requeter l'api à chaque rechargement
+de la page.
+
+## FRONTEND
+
+Pour profiter de l'environnement de django, nous avons hoisis d'utiliser le systeme de template. L'inconvénient est que
+le html est lourd, et qu'on doit jouer avec les dispaly (none, block, etc...)
 
 ## catalog
 
 Ce package regroupe les fonctionnalité de recherche par catégorie de pokeon (type, pokedex, type d'oeuf, genre, etc...)
 
-### EndPoints
-
-- https://pokeapi.co/api/v2/pokemon/
-- https://pokeapi.co/api/v2/pokedex/
-- https://pokeapi.co/api/v2/type/
-- https://pokeapi.co/api/v2/egg-group/
-- https://pokeapi.co/api/v2/gender/
-- https://pokeapi.co/api/v2/pokemon-habitat/
-- https://pokeapi.co/api/v2/growth-rate/
-
-Il retourne une liste de pokemon avec leurs nom et url.
-
-Pour chaque urls, on vies récupérer toutes les informations sur le pokemon. Pour des soucis de performance, on execute
-ces requêtes en asynchrone avec une gestion de cache, un pokemon déjà appeler est sauvegarder en local et ne sera plus
-appeler.
-
-De plus, les pokemons s'affiche par vaque de 25 (DEFAULT_MAX)
-
-## teams
-
-ce package rassemble les fonctionnalité de gestion des équipes de pokemons.
-
-### Actions possible
-
-- Créer une équipe
-- Voir ses pokemons par équipe
-- Accéder au differents catalogues pour ajouter des pokemons à son équipe
 
 # Ameliorations futures
 
