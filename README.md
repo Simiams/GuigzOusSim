@@ -1,3 +1,8 @@
+# LA TEAM
+- Oussam sfaira
+- Guillaume Gillet
+- Simon Convet
+
 # SETUP
 ### VENV
 - python3 -m venv venv (créer un environnement virtuel)
