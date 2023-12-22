@@ -1,3 +1,8 @@
+# LA TEAM
+- Oussam Sfaira
+- Guillaume Gillet
+- Simon Convert
+
 # SETUP
 
 ### VENV
