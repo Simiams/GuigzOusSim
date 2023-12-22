@@ -1,5 +1,5 @@
 import os
-
+import random
 from django.shortcuts import render
 from fuzzywuzzy import process
 from unidecode import unidecode
@@ -31,10 +31,14 @@ async def see_all_pokemons_by_catalog(request, catalog_name, catalog_type):
     teams = [convert_team_bdd_in_team_dto(t).to_json() async for t in PokemonTeam.objects.all()]
     display_button = len(pokemons) == int(max)
     catalog = create_catalog(catalog_type, catalog_name, pokemons)
+    shadow_img = "img/shadows/" + str(random.randint(1, 10)) + ".png"
+    print(shadow_img)
     return render(request, 'catalog/pages/pokemonsByCatalogs.html', {"teams": teams,
                                                                      "catalog": catalog,
-                                                                     "page_info": {"display_button": display_button,
-                                                                                   "max_pokemon": len(pokemons) + 25}})
+                                                                     "page_info": {
+                                                                         "shadow_img": shadow_img,
+                                                                         "display_button": display_button,
+                                                                         "max_pokemon": len(pokemons) + 25}})
 
 
 async def search_pokemon(request):
@@ -46,7 +50,9 @@ async def search_pokemon(request):
     pokemons = process.extract(pokemon_to_find, [p["name"] for p in all_pokemons], limit=20)
     catalog = CatalogDTO("search", "search", pokemons=await get_pokemon_by_names([p[0] for p in pokemons]))
     return render(request, 'catalog/pages/pokemonsByCatalogs.html', {"teams": teams, "catalog": catalog,
-                                                                 "page_info": {"display_search_form": True}})
+                                                                     "page_info": {
+                                                                                   "display_search_form": True,
+                                                                                   'current_query': pokemon_to_find}})
 
 
 def not_found(request):

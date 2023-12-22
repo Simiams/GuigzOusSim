@@ -1,4 +1,5 @@
 import os
+from random import random
 
 from catalog.constant import URL_BY_CATALOG, THEME_BY_CATALOG
 from dtos.CatalogDTO import CatalogDTO
@@ -13,7 +14,7 @@ def get_pokemons_urls_by_catalog_name(catalog_name, res):
         return [r["pokemon"]["url"] for r in res.json()['pokemon']]
     if catalog_name == "pokedex":
         return [r["pokemon_species"]["url"] for r in res.json()['pokemon_entries']]
-    if catalog_name == "egg-group" or catalog_name == "habitat" or catalog_name == "growth-rate":
+    if catalog_name == "egg-group" or catalog_name == "pokemon-habitat" or catalog_name == "growth-rate":
         return [r["url"] for r in res.json()['pokemon_species']]
     if catalog_name == "gender":
         return [r["pokemon_species"]["url"] for r in res.json()['pokemon_species_details']]
@@ -50,3 +51,4 @@ def mitigate_color(code_hex, correction):
     b = max(0, min(255, b + correction))
     nouveau_code_hex = "#{:02X}{:02X}{:02X}".format(int(r), int(g), int(b))
     return nouveau_code_hex
+

@@ -3,7 +3,7 @@ URL_BY_CATALOG = {
     "pokedex": "GET_POKEDEX",
     "egg-group": "GET_EGG_GROUP",
     "gender": "GET_GENDER",
-    "habitat": "GET_HABITAT",
+    "pokemon-habitat": "GET_HABITAT",
     "growth-rate": "GET_GROWTH_RATE",
 }
 
@@ -16,7 +16,7 @@ THEME_BY_CATALOG = {
         "slow-then-very-fast": {"icon": "img/growthRate/slow-then-very-fast.png", "color": "#d2b4de",},
         "fast-then-very-slow": {"icon": "img/growthRate/fast-then-very-slow.png", "color": "#f5b7b1",}
     },
-    "habitat": {
+    "pokemon-habitat": {
         "cave": {"icon": "img/habitat/cave.png", "color": "#6F61A7"},
         "forest": {"icon": "img/habitat/forest.png", "color": "#68D098"},
 
